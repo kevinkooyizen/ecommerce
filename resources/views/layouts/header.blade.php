@@ -93,6 +93,7 @@
         @if (!Auth::user())
           <div class="dropdown-menu">
             {!! Form::open(['url' => 'login', 'method' => 'POST', 'class' => 'px-4 py-3']) !!}
+              <input type="hidden" name="currentRoute" value="{{ Route::getFacadeRoot()->current()->uri() }}">
               <div class="form-group">
                 <label for="exampleDropdownFormEmail1">Email address</label>
                 <input type="email" class="form-control" id="exampleDropdownFormEmail1" name="email" autocomplete="off" placeholder="email@example.com">
@@ -118,7 +119,8 @@
             <a class="dropdown-item line-height-20 text-left w-100" href="#">Profile</a>
             <a class="dropdown-item line-height-20 text-left w-100" href="#" onclick="$('#logoutForm').submit();">Logout</a>
             {!! Form::open(['url' => '/logout', 'method' => 'POST', 'id' => 'logoutForm']) !!}
-            </form>
+              <input type="hidden" name="currentRoute" value="{{ Route::getFacadeRoot()->current()->uri() }}">
+            {{ Form::close() }}
           </div>
         @endif
       </div>
