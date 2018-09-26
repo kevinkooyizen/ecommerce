@@ -9,7 +9,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Sanctuary') }}</title>
+  <title>{{ config('app.name', 'E-Commerce') }}</title>
 
   {{-- <link rel="icon" href="img/core-img/favicon.ico">
 
