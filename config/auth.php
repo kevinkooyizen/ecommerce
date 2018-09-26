@@ -98,5 +98,6 @@ return [
             'expire' => 60,
         ],
     ],
+    'admins' => env('SYSTEM_ADMIN'),
 
 ];

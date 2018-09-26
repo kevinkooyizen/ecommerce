@@ -9,15 +9,15 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Sanctuary') }}</title>
+  <title>{{ config('app.name', 'E-Commerce') }}</title>
 
   {{-- <link rel="icon" href="img/core-img/favicon.ico">
 
   <link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" /> --}}
 
   <!--begin::Base Styles -->
-  <link rel="stylesheet" href="css/core-style.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/core-style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   <!--end::Base Styles -->
   
   <!-- Scripts -->
@@ -26,20 +26,12 @@
 </head>
 <body>
 
-  {{-- @guest
-    @yield('content')
-  @endguest --}}
-
-  {{-- @auth
-    @include('includes.header')
-    @include('includes.body')
-    @include('includes.footer')
-  @endauth --}}
   @include('layouts.header')
   @include('layouts.body')
   @include('layouts.footer')
 
   <!--begin::Base Scripts -->
+  <!-- jQuery (Necessary for All JavaScript Plugins) -->
   <script src="js/jquery/jquery-2.2.4.min.js"></script>
   <!-- Popper js -->
   <script src="js/popper.min.js"></script>

@@ -40,6 +40,14 @@ class LoginController extends Controller
       $this->middleware('guest')->except('logout');
   }
 
+  public function authenticated(Request $request) {
+    return redirect($request->currentRoute);
+  }
+
+  protected function loggedOut(Request $request) {
+    return redirect($request->currentRoute);
+  }
+
   // public function authenticate(Request $request){
   //   // validate the info, create rules for the inputs
   //   $request->validate([
