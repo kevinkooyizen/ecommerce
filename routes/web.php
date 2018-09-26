@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {return view('home');});
-Route::get('/shop', function () {return view('shop');});
+Route::get('/shop', 'ItemsController@index');
 
 Route::get('reset-password', function(){return view('auth.passwords.reset');});
 Route::post('reset-password', 'SettingsController@resetPassword');
