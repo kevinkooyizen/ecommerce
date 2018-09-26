@@ -110,8 +110,8 @@
               <button type="submit" class="btn btn-primary">Sign in</button>
             </form>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item line-height-20" href="#">New around here? Sign up</a>
-            <a class="dropdown-item line-height-20" href="#">Forgot password?</a>
+            <a class="dropdown-item line-height-20" href="/register">New around here? Sign up</a>
+            {{-- <a class="dropdown-item line-height-20" href="#">Forgot password?</a> --}}
           </div>
         @else
           <div class="dropdown-menu">
