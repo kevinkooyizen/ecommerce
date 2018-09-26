@@ -9,3 +9,6 @@ Auth::routes();
 
 Route::resource('admins', 'AdminController');
 Route::get('admins', function () {return redirect('/');});
+Route::group(['middleware' => 'checkAdmin'],function (){
+  Route::resource('test', 'TestController');
+});

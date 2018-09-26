@@ -4,7 +4,7 @@
     <!-- Classy Menu -->
     <nav class="classy-navbar" id="essenceNav">
       <!-- Logo -->
-      <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+      <a class="nav-brand" href="/"><img src="img/core-img/logo.png" alt=""></a>
       <!-- Navbar Toggler -->
       <div class="classy-navbar-toggler">
         <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -61,7 +61,7 @@
                 <li><a href="contact.html">Contact</a></li>
               </ul>
             </li>
-            <li><a href="blog.html">Blog</a></li>
+            {{-- <li><a href="blog.html">Blog</a></li> --}}
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -72,19 +72,57 @@
     <!-- Header Meta Data -->
     <div class="header-meta d-flex clearfix justify-content-end">
       <!-- Search Area -->
-      <div class="search-area">
+      {{-- <div class="search-area">
         <form action="#" method="post">
           <input type="search" name="search" id="headerSearch" placeholder="Type for search">
           <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
         </form>
-      </div>
+      </div> --}}
       <!-- Favourite Area -->
-      <div class="favourite-area">
+      {{-- <div class="favourite-area">
         <a href="#"><img src="img/core-img/heart.svg" alt=""></a>
-      </div>
+      </div> --}}
       <!-- User Login Info -->
       <div class="user-login-info">
-        <a href="#"><img src="img/core-img/user.svg" alt=""></a>
+        <a href="#" class="dropdown-toggle d-lg-flex w-100" data-toggle="dropdown">
+          <div class="d-lg-flex justify-content-center">
+            <span class="text-nowrap position-static margin-right-10 margin-left-25">{{ Auth::user()?Auth::user()->name:'Login' }}</span>
+            <img class="h-100 margin-right-25" src="img/core-img/user.svg" alt="Login">
+          </div>
+        </a>
+        @if (!Auth::user())
+          <div class="dropdown-menu">
+            {!! Form::open(['url' => 'login', 'method' => 'POST', 'class' => 'px-4 py-3']) !!}
+              <input type="hidden" name="currentRoute" value="{{ Route::getFacadeRoot()->current()->uri() }}">
+              <div class="form-group">
+                <label for="exampleDropdownFormEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleDropdownFormEmail1" name="email" autocomplete="off" placeholder="email@example.com">
+              </div>
+              <div class="form-group">
+                <label for="exampleDropdownFormPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleDropdownFormPassword1" name="password" placeholder="Password">
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                <label class="form-check-label" for="dropdownCheck">
+                  Remember me
+                </label>
+              </div>
+              <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item line-height-20" href="/register">New around here? Sign up</a>
+            {{-- <a class="dropdown-item line-height-20" href="#">Forgot password?</a> --}}
+          </div>
+        @else
+          <div class="dropdown-menu">
+            <a class="dropdown-item line-height-20 text-left w-100" href="#">Profile</a>
+            <a class="dropdown-item line-height-20 text-left w-100" href="#" onclick="$('#logoutForm').submit();">Logout</a>
+            {!! Form::open(['url' => '/logout', 'method' => 'POST', 'id' => 'logoutForm']) !!}
+              <input type="hidden" name="currentRoute" value="{{ Route::getFacadeRoot()->current()->uri() }}">
+            {{ Form::close() }}
+          </div>
+        @endif
       </div>
       <!-- Cart Area -->
       <div class="cart-area">
