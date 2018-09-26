@@ -84,7 +84,12 @@
       </div> --}}
       <!-- User Login Info -->
       <div class="user-login-info">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/core-img/user.svg" alt=""></a>
+        <a href="#" class="dropdown-toggle d-lg-flex w-100" data-toggle="dropdown">
+          <div class="d-lg-flex justify-content-center">
+            <span class="text-nowrap position-static margin-right-10 margin-left-25">{{ Auth::user()?Auth::user()->name:'Login' }}</span>
+            <img class="h-100 margin-right-25" src="img/core-img/user.svg" alt="Login">
+          </div>
+        </a>
         @if (!Auth::user())
           <div class="dropdown-menu">
             {!! Form::open(['url' => 'login', 'method' => 'POST', 'class' => 'px-4 py-3']) !!}
@@ -110,8 +115,8 @@
           </div>
         @else
           <div class="dropdown-menu">
-            <a class="dropdown-item line-height-20 text-left width-max" href="#">Profile</a>
-            <a class="dropdown-item line-height-20 text-left width-max" href="#" onclick="$('#logoutForm').submit();">Logout</a>
+            <a class="dropdown-item line-height-20 text-left w-100" href="#">Profile</a>
+            <a class="dropdown-item line-height-20 text-left w-100" href="#" onclick="$('#logoutForm').submit();">Logout</a>
             {!! Form::open(['url' => '/logout', 'method' => 'POST', 'id' => 'logoutForm']) !!}
             </form>
           </div>
