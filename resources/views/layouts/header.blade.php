@@ -84,8 +84,8 @@
       </div> --}}
       <!-- User Login Info -->
       <div class="user-login-info">
-        <a href="#" class="dropdown-toggle d-lg-flex w-100" data-toggle="dropdown">
-          <div class="d-lg-flex justify-content-center">
+        <a href="#" class="dropdown-toggle d-flex w-100" data-toggle="dropdown">
+          <div class="d-flex justify-content-center">
             <span class="text-nowrap position-static margin-right-10 margin-left-25">{{ Auth::user()?Auth::user()->name:'Login' }}</span>
             <img class="h-100 margin-right-25" src="img/core-img/user.svg" alt="Login">
           </div>
