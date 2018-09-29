@@ -44,7 +44,7 @@
                   <li data-toggle="collapse" data-target="#{{ $category->name }}" class="{{ $key != 0?'collapsed':'' }}">
                     <a href="#">{{ $category->name }}</a>
                     <ul class="sub-menu collapse {{ $key == 0?'show':'' }}" id="{{ $category->name }}">
-                      <li><a href="#" onclick="fillValue('category', '')">All Categories</a></li>
+                      <li><a href="#" onclick="fillValue('category', '')">All {{ str_plural($category->name) }}</a></li>
                       @foreach ($category->subcategories as $subcategory)
                         <li><a href="#" onclick="fillValue('category', '{{ $subcategory->id }}')">{{ $subcategory->name }}</a></li>
                       @endforeach
