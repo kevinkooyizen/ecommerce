@@ -1,4 +1,4 @@
-<!-- ##### Header Area Start ##### -->
+{{-- ##### Header Area Start ##### --}}
 <header class="header_area">
   <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
     <!-- Classy Menu -->
@@ -22,13 +22,11 @@
                 <div class="megamenu">
                     <ul class="single-mega cn-col-4">
                         <li class="title">Women's Collection</li>
-                        <li><a href="/shop">Dresses</a></li>
-                        <li><a href="/shop">Blouses &amp; Shirts</a></li>
-                        <li><a href="/shop">T-shirts</a></li>
-                        <li><a href="/shop">Rompers</a></li>
-                        <li><a href="/shop">Bras &amp; Panties</a></li>
+                        @foreach ($categories as $category)
+                          <li><a href="/shop?category={{ $category->id }}">{{ $category->name }}</a></li>
+                        @endforeach
                     </ul>
-                    <ul class="single-mega cn-col-4">
+                    {{-- <ul class="single-mega cn-col-4">
                         <li class="title">Men's Collection</li>
                         <li><a href="/shop">T-Shirts</a></li>
                         <li><a href="/shop">Polo</a></li>
@@ -43,7 +41,7 @@
                         <li><a href="/shop">T-shirts</a></li>
                         <li><a href="/shop">Jackets</a></li>
                         <li><a href="/shop">Trench</a></li>
-                    </ul>
+                    </ul> --}}
                     <div class="single-mega cn-col-4">
                         <img src="img/bg-img/bg-6.jpg" alt="">
                     </div>
