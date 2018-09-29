@@ -248,6 +248,8 @@
         ');
         $('#cart-subtotal')[0].innerHTML = "$" + data.subtotal;
         $('#cart-total')[0].innerHTML = "$" + data.total;
+        $('.cart-item-count')[0].innerHTML = data.items.length;
+        $('.cart-item-count')[1].innerHTML = data.items.length;
       },
       error: function (data) {
         @if (config('app.env') == "local")

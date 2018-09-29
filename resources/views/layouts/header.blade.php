@@ -124,7 +124,7 @@
       </div>
       <!-- Cart Area -->
       <div class="cart-area">
-        <a href="#" id="essenceCartBtn"><img src="img/core-img/bag.svg" alt=""> <span>3</span></a>
+        <a href="#" id="essenceCartBtn"><img src="img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $cart?$cart->items->count():'' }}</span></a>
       </div>
     </div>
 
@@ -139,7 +139,7 @@
 
   <!-- Cart Button -->
   <div class="cart-button">
-    <a href="#" id="rightSideCart"><img src="img/core-img/bag.svg" alt=""> <span>3</span></a>
+    <a href="#" id="rightSideCart"><img src="img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $cart?$cart->items->count():'' }}</span></a>
   </div>
 
   <div class="cart-content d-flex">
@@ -198,6 +198,13 @@
         $('#cart-item-' + data.deletedItemId).fadeOut(1000);
         $('#cart-subtotal')[0].innerHTML = "$" + data.subtotal;
         $('#cart-total')[0].innerHTML = "$" + data.total;
+        if (data.items) {
+          itemsCount = data.items.length;
+        } else if (!data.items) {
+          itemsCount = 0;
+        }
+        $('.cart-item-count')[0].innerHTML = itemsCount;
+        $('.cart-item-count')[1].innerHTML = itemsCount;
       },
       error: function (data) {
         @if (config('app.env') == "local")

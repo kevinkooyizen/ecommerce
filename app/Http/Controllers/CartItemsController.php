@@ -15,6 +15,7 @@ class CartItemsController extends Controller {
     $cart = Cart::getCurrentUsersCart();
     $cart->addedItem = $item;
     $cart->addedItemProperties = $item->item;
+    $cart->items = $cart->items;
 
     return response()->json($cart);
   }
@@ -24,6 +25,7 @@ class CartItemsController extends Controller {
 
     $cart = Cart::getCurrentUsersCart();
     $cart->deletedItemId = $itemId;
+    $cart->items = $cart->items;
 
     return response()->json($cart);
   }
