@@ -23,6 +23,8 @@
         <input type="hidden" name="brand" value="{{ $request->brand }}">
         <input type="hidden" name="category" value="{{ $request->category }}">
         <input type="hidden" name="colour" value="{{ $request->colour }}">
+        <input type="hidden" name="minPrice" value="{{ $request->minPrice }}">
+        <input type="hidden" name="maxPrice" value="{{ $request->maxPrice }}">
       {{ Form::close() }}
       <div class="col-12 col-md-4 col-lg-3">
         <div class="shop_sidebar_area">
@@ -61,14 +63,20 @@
             <p class="widget-title2 mb-30">Price</p>
 
             <div class="widget-desc">
-                <div class="slider-range">
-                    <div data-min="{{ round($items->min('price')) }}" data-max="{{ round($items->max('price')) }}" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="{{ round($items->min('price')) }}" data-value-max="{{ round($items->max('price')) }}" data-label-result="Range:">
-                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                    </div>
-                    <div class="range-price">Range: {{ $items->min('price') }} - {{ $items->max('price') }}</div>
+              <div class="slider-range">
+                <div data-min="{{ round($items->min('price')) }}" data-max="{{ round($items->max('price')) }}" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="{{ round($items->min('price')) }}" data-value-max="{{ round($items->max('price')) }}" data-label-result="Range:" id="minMaxPriceSlider">
+                  <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                  <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                  <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
                 </div>
+                <div class="range-price">Range: {{ round($items->min('price')) }} - {{ round($items->max('price')) }}</div>
+              </div>
+              <br>
+              <div class="">
+                <a href="#" class="btn essence-btn" onclick="fillValue('minPrice', $('.range-price')[0].innerHTML.match(/(\d+)/g)[0], 'maxPrice', $('.range-price')[0].innerHTML.match(/(\d+)/g)[1])">Filter By Price</a>
+              </div>
+              <br>
+              <a href="#" class="font-weight-normal" onclick="fillValue('minPrice', '', 'maxPrice', '')">Clear Price Filter</a>
             </div>
           </div>
 
@@ -203,10 +211,14 @@
 </section>
 <!-- ##### Shop Grid Area End ##### -->
 
+@push('scripts')
 <script type="text/javascript">
-  function fillValue(key, value) {
+  function fillValue(key, value, key2, value2) {
+    if (key2)$('[name=' + key2 + ']').val(value2);
     $('[name=' + key + ']').val(value);
     $('#searchForm').submit();
   }
 </script>
+
+@endpush
 @endsection

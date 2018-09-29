@@ -44,5 +44,6 @@
   <!-- Active js -->
   <script src="js/active.js"></script>
   <!--end::Base Scripts -->
+  @stack('scripts')
 </body>
 </html>

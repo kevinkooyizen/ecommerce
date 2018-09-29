@@ -28,7 +28,13 @@ class ItemsController extends Controller
       $items->whereIn('category_id', $categoryIds);
     }
 
+    if($request->minPrice) $items->where('price', '>=', $request->minPrice);
+    if($request->maxPrice) $items->where('price', '<=', $request->maxPrice);
+
     $items = $items->paginate(25);
+
+    $request->minPrice = $items->min('price');
+    $request->maxPrice = $items->max('price');
 
     return view('shop', compact('items', 'request'));
   }
