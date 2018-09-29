@@ -25,6 +25,7 @@
         <input type="hidden" name="colour" value="{{ $request->colour }}">
         <input type="hidden" name="minPrice" value="{{ $request->minPrice }}">
         <input type="hidden" name="maxPrice" value="{{ $request->maxPrice }}">
+        <input type="hidden" name="sort" value="{{ $request->sort }}">
       {{ Form::close() }}
       <div class="col-12 col-md-4 col-lg-3">
         <div class="shop_sidebar_area">
@@ -120,20 +121,16 @@
                       <div class="product-topbar d-flex align-items-center justify-content-between">
                           <!-- Total Products -->
                           <div class="total-products">
-                              <p><span>{{ $items->count() }}</span> products found</p>
+                            <p><span>{{ $items->count() }}</span> products found</p>
                           </div>
                           <!-- Sorting -->
                           <div class="product-sorting d-flex">
-                              <p>Sort by:</p>
-                              <form action="#" method="get">
-                                  <select name="select" id="sortByselect">
-                                      <option value="value">Highest Rated</option>
-                                      <option value="value">Newest</option>
-                                      <option value="value">Price: $$ - $</option>
-                                      <option value="value">Price: $ - $$</option>
-                                  </select>
-                                  <input type="submit" class="d-none" value="">
-                              </form>
+                            <p>Sort by:</p>
+                            <select name="select" id="sortByselect" onchange="fillValue('sort', $('#sortByselect').val())">
+                              <option value="latest" onselect="fillValue('sort', 'latest')">Newest</option>
+                              <option value="expensive" {{ $request->sort == "expensive"?'selected="selected"':''}}>Price: $$ - $</option>
+                              <option value="cheap" {{ $request->sort == "cheap"?'selected="selected"':''}}>Price: $ - $$</option>
+                            </select>
                           </div>
                       </div>
                   </div>
