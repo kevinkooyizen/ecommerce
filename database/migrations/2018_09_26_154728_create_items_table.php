@@ -18,6 +18,7 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->integer('category_id')->default(0);
             $table->integer('brand_id')->default(0);
+            $table->integer('colour_id')->default(0);
             $table->string('primary_image');
             $table->string('secondary_image');
             $table->boolean('new');

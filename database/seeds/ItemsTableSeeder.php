@@ -19,6 +19,7 @@ class ItemsTableSeeder extends Seeder{
       $item->name = $names[$key];
       $item->category_id = $clothingCategory->id;
       $item->brand_id = $key + 1;
+      $item->colour_id = $key + 1;
       $primaryKey = $key + 1;
       $secondaryKey = $key + 2;
       if ($secondaryKey == 10) $secondaryKey = 1;

@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Colour;
 
 use View;
 
@@ -16,7 +17,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
    * @return void
    */
   public function boot(){
-    $this->shop();
+    $this->filters();
   }
 
   /**
@@ -32,15 +33,17 @@ class ViewComposerServiceProvider extends ServiceProvider {
    * Compose the Default Variables.
    */
 	
-	public function shop(){
+	public function filters(){
 		view()->composer('shop*', function () {
       $categories = Category::where('parent_id', 0)->get();
       foreach ($categories as $category) {
         $category->subcategories = Category::where('parent_id', $category->id)->get();
       }
       $brands = Brand::all();
+      $colours = Colour::all();
       View::share('categories', $categories);
       View::share('brands', $brands);
+      View::share('colours', $colours);
     });
 
 	}

@@ -22,6 +22,7 @@
       {!! Form::open(['url' => 'shop', 'method' => 'GET', 'id' => 'searchForm']) !!}
         <input type="hidden" name="brand" value="{{ $request->brand }}">
         <input type="hidden" name="category" value="{{ $request->category }}">
+        <input type="hidden" name="colour" value="{{ $request->colour }}">
       {{ Form::close() }}
       <div class="col-12 col-md-4 col-lg-3">
         <div class="shop_sidebar_area">
@@ -40,7 +41,7 @@
                   <li data-toggle="collapse" data-target="#{{ $category->name }}" class="{{ $key != 0?'collapsed':'' }}">
                     <a href="#">{{ $category->name }}</a>
                     <ul class="sub-menu collapse {{ $key == 0?'show':'' }}" id="{{ $category->name }}">
-                      <li><a href="#" onclick="fillValue('category', '')">All</a></li>
+                      <li><a href="#" onclick="fillValue('category', '')">All Categories</a></li>
                       @foreach ($category->subcategories as $subcategory)
                         <li><a href="#" onclick="fillValue('category', '{{ $subcategory->id }}')">{{ $subcategory->name }}</a></li>
                       @endforeach
@@ -74,19 +75,15 @@
           <!-- ##### Single Widget ##### -->
           <div class="widget color mb-50">
             <!-- Widget Title 2 -->
-            <p class="widget-title2 mb-30">Color</p>
+            <p class="widget-title2 mb-30">Colour</p>
             <div class="widget-desc">
+              <a href="#" class="font-weight-normal" onclick="fillValue('colour', '')">All Colours</a>
+              <br>
+              <br>
               <ul class="d-flex">
-                <li><a href="#" class="color1"></a></li>
-                <li><a href="#" class="color2"></a></li>
-                <li><a href="#" class="color3"></a></li>
-                <li><a href="#" class="color4"></a></li>
-                <li><a href="#" class="color5"></a></li>
-                <li><a href="#" class="color6"></a></li>
-                <li><a href="#" class="color7"></a></li>
-                <li><a href="#" class="color8"></a></li>
-                <li><a href="#" class="color9"></a></li>
-                <li><a href="#" class="color10"></a></li>
+                @foreach ($colours as $key => $colour)
+                  <li><a href="#" class="color{{ $key + 1 }}" title="{{ $colour->name }}" onclick="fillValue('colour', '{{ $colour->id }}')"></a></li>
+                @endforeach
               </ul>
             </div>
           </div>
@@ -97,7 +94,7 @@
             <p class="widget-title2 mb-30">Brands</p>
             <div class="widget-desc">
               <ul>
-                <li><a href="#" onclick="fillValue('brand', '')">All</a></li>
+                <li><a href="#" onclick="fillValue('brand', '')">All Brands</a></li>
                 @foreach ($brands as $brand)
                   <li><a href="#" onclick="fillValue('brand', '{{ $brand->id }}')">{{ $brand->name }}</a></li>
                 @endforeach
