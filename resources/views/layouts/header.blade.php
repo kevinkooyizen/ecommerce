@@ -18,7 +18,7 @@
         <!-- Nav Start -->
         <div class="classynav">
           <ul>
-            <li><a href="#">Shop</a>
+            <li><a href="/shop">Shop</a>
                 <div class="megamenu">
                     <ul class="single-mega cn-col-4">
                         <li class="title">Women's Collection</li>
@@ -51,18 +51,18 @@
             </li>
             <li><a href="#">Pages</a>
               <ul class="dropdown">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/shop">Shop</a></li>
-                <li><a href="single-product-details.html">Product Details</a></li>
+                {{-- <li><a href="single-product-details.html">Product Details</a></li> --}}
                 <li><a href="checkout.html">Checkout</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="single-blog.html">Single Blog</a></li>
-                <li><a href="regular-page.html">Regular Page</a></li>
+                {{-- <li><a href="blog.html">Blog</a></li> --}}
+                {{-- <li><a href="single-blog.html">Single Blog</a></li> --}}
+                {{-- <li><a href="regular-page.html">Regular Page</a></li> --}}
                 <li><a href="contact.html">Contact</a></li>
               </ul>
             </li>
             {{-- <li><a href="blog.html">Blog</a></li> --}}
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
         <!-- Nav End -->
