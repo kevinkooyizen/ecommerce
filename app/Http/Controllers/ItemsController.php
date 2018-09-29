@@ -34,7 +34,7 @@ class ItemsController extends Controller
     if($request->sort == "expensive") $items->orderBy('price', 'DESC');
     if($request->sort == "cheap") $items->orderBy('price', 'ASC');
 
-    $items = $items->paginate(25);
+    $items = $items->paginate(9);
 
     $request->minPrice = $items->min('price');
     $request->maxPrice = $items->max('price');

@@ -158,9 +158,9 @@
                             @endif
 
                             <!-- Favourite -->
-                            <div class="product-favourite">
+                            {{-- <div class="product-favourite">
                               <a href="#" class="favme fa fa-heart"></a>
-                            </div>
+                            </div> --}}
                           </div>
 
                           <!-- Product Description -->
@@ -193,13 +193,17 @@
           <!-- Pagination -->
           <nav aria-label="navigation">
             <ul class="pagination mt-50 mb-70">
-              <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">...</a></li>
-              <li class="page-item"><a class="page-link" href="#">21</a></li>
-              <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
+              <li class="page-item {{ ($items->currentPage() == 1)?"d-none":"" }}">
+                <a class="page-link" href="{{ ($items->currentPage() != 1)?$items->previousPageUrl():"#" }}"><i class="fa fa-angle-left"></i></a>
+              </li>
+              @for ($page = 1; $page <= $items->lastPage(); $page++)
+              <li class="page-item {{ ($items->currentPage() == $page)?"":"" }}">
+                <a class="page-link" href="{{ $items->url($page) }}">{{ $page }}</a>
+              </li>
+              @endfor
+              <li class="page-item {{ ($items->currentPage() == $items->lastPage())?"d-none":"" }}">
+                <a class="page-link" href="{{ ($items->currentPage() != $items->lastPage())?$items->nextPageUrl():"#" }}"><i class="fa fa-angle-right"></i></a>
+              </li>
             </ul>
           </nav>
       </div>
@@ -216,6 +220,5 @@
     $('#searchForm').submit();
   }
 </script>
-
 @endpush
 @endsection
