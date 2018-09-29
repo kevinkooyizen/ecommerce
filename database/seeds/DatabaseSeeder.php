@@ -5,6 +5,8 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder {
   protected $toTruncate = [
     'users',
+    'categories',
+    'brands',
     'items',
   ];
 
@@ -14,6 +16,8 @@ class DatabaseSeeder extends Seeder {
     }
 
     $this->call(UsersTableSeeder::class);
+    $this->call(CategoriesTableSeeder::class);
+    $this->call(BrandsTableSeeder::class);
     $this->call(ItemsTableSeeder::class);
   }
 }

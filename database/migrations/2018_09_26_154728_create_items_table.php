@@ -16,10 +16,13 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('brand');
+            $table->integer('category_id')->default(0);
+            $table->integer('brand_id')->default(0);
             $table->string('primary_image');
             $table->string('secondary_image');
+            $table->boolean('new');
             $table->decimal('price', 8,2)->default(0.00);
+            $table->decimal('discount', 6,2)->default(0.00);
             $table->timestamps();
         });
     }
