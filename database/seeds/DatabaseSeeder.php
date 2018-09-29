@@ -9,6 +9,8 @@ class DatabaseSeeder extends Seeder {
     'categories',
     'brands',
     'items',
+    'carts',
+    'cart_items',
   ];
 
   public function run() {
@@ -21,5 +23,6 @@ class DatabaseSeeder extends Seeder {
     $this->call(CategoriesTableSeeder::class);
     $this->call(BrandsTableSeeder::class);
     $this->call(ItemsTableSeeder::class);
+    // $this->call(CartsTableSeeder::class);
   }
 }

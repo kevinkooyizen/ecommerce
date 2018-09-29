@@ -19,7 +19,7 @@
 <section class="shop_grid_area section-padding-80">
   <div class="container">
     <div class="row">
-      {!! Form::open(['url' => 'shop', 'method' => 'GET', 'id' => 'searchForm']) !!}
+      {!! Form::open(['url' => 'shop', 'method' => 'GET', 'id' => 'search-form']) !!}
         <input type="hidden" name="brand" value="{{ $request->brand }}">
         <input type="hidden" name="category" value="{{ $request->category }}">
         <input type="hidden" name="colour" value="{{ $request->colour }}">
@@ -180,7 +180,7 @@
                             <div class="hover-content">
                               <!-- Add to Cart -->
                               <div class="add-to-cart-btn">
-                                <a href="#" class="btn essence-btn">Add to Cart</a>
+                                <a href="#" class="btn essence-btn" onclick="addToCart({{ $item->id }})">Add to Cart</a>
                               </div>
                             </div>
                           </div>
@@ -217,8 +217,66 @@
   function fillValue(key, value, key2, value2) {
     if (key2)$('[name=' + key2 + ']').val(value2);
     $('[name=' + key + ']').val(value);
-    $('#searchForm').submit();
+    $('#search-form').submit();
   }
+
+  function addToCart(itemId) {
+    status = checkLoggedIn();
+    if (status == "false") return false;
+    $.ajax({
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      type: 'POST',
+      url: 'cart-items',
+      data: {
+        itemId: itemId
+      },
+      dataType: 'JSON',
+      success: function (data) {
+        alert('Item Added');
+        $('.cart-list').append('\
+          <div class="single-cart-item" id="cart-item-' + data.id + '">\
+            <a href="#" class="product-image">\
+              <img src="' + data.addedItemProperties.primary_image + '" class="cart-thumb" alt="' + data.addedItemProperties.name + '">\
+              <div class="cart-item-desc">\
+                <span class="product-remove" onclick="removeFromCart(' + data.id + ')"><i class="fa fa-close" aria-hidden="true"></i></span>\
+                  <span class="badge">' + data.addedItemProperties.brand + '</span>\
+                  <h6>' + data.addedItemProperties.name + '</h6>\
+                  <p class="price">$' + data.addedItemProperties.price + '</p>\
+              </div>\
+            </a>\
+          </div>\
+        ');
+        $('#cart-subtotal')[0].innerHTML = "$" + data.subtotal;
+        $('#cart-total')[0].innerHTML = "$" + data.total;
+      },
+      error: function (data) {
+        @if (config('app.env') == "local")
+          console.log('Request Status: ' + data.status + ' Status Text: ' + data.statusText + ' ' + data.responseText);
+          debugger;
+        @endif
+      },
+    });
+  }
+
+  function checkLoggedIn() {
+    $.ajax({
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      type: 'GET',
+      url: 'users',
+      dataType: 'JSON',
+      async: false,
+      success: function (data) {
+        if (!data) {
+          alert('Please log in first');
+          result = false;
+        } else if (data) {
+          result = true;
+        }
+      },
+    });
+    return result;
+  }
+
 </script>
 @endpush
 @endsection

@@ -52,11 +52,11 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/shop">Shop</a></li>
                 {{-- <li><a href="single-product-details.html">Product Details</a></li> --}}
-                <li><a href="checkout.html">Checkout</a></li>
+                {{-- <li><a href="checkout.html">Checkout</a></li> --}}
                 {{-- <li><a href="blog.html">Blog</a></li> --}}
                 {{-- <li><a href="single-blog.html">Single Blog</a></li> --}}
                 {{-- <li><a href="regular-page.html">Regular Page</a></li> --}}
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/contact">Contact</a></li>
               </ul>
             </li>
             {{-- <li><a href="blog.html">Blog</a></li> --}}
@@ -137,78 +137,74 @@
 
 <div class="right-side-cart-area">
 
-    <!-- Cart Button -->
-    <div class="cart-button">
-        <a href="#" id="rightSideCart"><img src="img/core-img/bag.svg" alt=""> <span>3</span></a>
+  <!-- Cart Button -->
+  <div class="cart-button">
+    <a href="#" id="rightSideCart"><img src="img/core-img/bag.svg" alt=""> <span>3</span></a>
+  </div>
+
+  <div class="cart-content d-flex">
+
+    <!-- Cart List Area -->
+    <div class="cart-list">
+      @foreach ($cartItems as $cartItem)
+        <!-- Single Cart Item -->
+        <div class="single-cart-item" id="cart-item-{{ $cartItem->id }}">
+          <a href="#" class="product-image">
+            <img src="{{ $cartItem->item->primary_image }}" class="cart-thumb" alt="{{ $cartItem->item->name }}">
+            <!-- Cart Item Desc -->
+            <div class="cart-item-desc">
+              <span class="product-remove" onclick="removeFromCart('{{ $cartItem->id }}')"><i class="fa fa-close" aria-hidden="true"></i></span>
+                <span class="badge">{{ $cartItem->item->brand }}</span>
+                <h6>{{ $cartItem->item->name }}</h6>
+                {{-- <p class="size">Size: S</p> --}}
+                {{-- <p class="color">Color: Red</p> --}}
+                <p class="price">${{ $cartItem->item->price }}</p>
+            </div>
+          </a>
+        </div>
+      @endforeach
     </div>
 
-    <div class="cart-content d-flex">
+    <!-- Cart Summary -->
+    <div class="cart-amount-summary">
 
-        <!-- Cart List Area -->
-        <div class="cart-list">
-            <!-- Single Cart Item -->
-            <div class="single-cart-item">
-                <a href="#" class="product-image">
-                    <img src="img/product-img/product-1.jpg" class="cart-thumb" alt="">
-                    <!-- Cart Item Desc -->
-                    <div class="cart-item-desc">
-                      <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                        <span class="badge">Mango</span>
-                        <h6>Button Through Strap Mini Dress</h6>
-                        <p class="size">Size: S</p>
-                        <p class="color">Color: Red</p>
-                        <p class="price">$45.00</p>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Single Cart Item -->
-            <div class="single-cart-item">
-                <a href="#" class="product-image">
-                    <img src="img/product-img/product-2.jpg" class="cart-thumb" alt="">
-                    <!-- Cart Item Desc -->
-                    <div class="cart-item-desc">
-                      <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                        <span class="badge">Mango</span>
-                        <h6>Button Through Strap Mini Dress</h6>
-                        <p class="size">Size: S</p>
-                        <p class="color">Color: Red</p>
-                        <p class="price">$45.00</p>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Single Cart Item -->
-            <div class="single-cart-item">
-                <a href="#" class="product-image">
-                    <img src="img/product-img/product-3.jpg" class="cart-thumb" alt="">
-                    <!-- Cart Item Desc -->
-                    <div class="cart-item-desc">
-                      <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                        <span class="badge">Mango</span>
-                        <h6>Button Through Strap Mini Dress</h6>
-                        <p class="size">Size: S</p>
-                        <p class="color">Color: Red</p>
-                        <p class="price">$45.00</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- Cart Summary -->
-        <div class="cart-amount-summary">
-
-            <h2>Summary</h2>
-            <ul class="summary-table">
-                <li><span>subtotal:</span> <span>$274.00</span></li>
-                <li><span>delivery:</span> <span>Free</span></li>
-                <li><span>discount:</span> <span>-15%</span></li>
-                <li><span>total:</span> <span>$232.00</span></li>
-            </ul>
-            <div class="checkout-btn mt-100">
-                <a href="checkout.html" class="btn essence-btn">check out</a>
-            </div>
-        </div>
+      <h2>Summary</h2>
+      <ul class="summary-table">
+        <li><span>subtotal:</span> <span id="cart-subtotal">${{ $cart->subtotal }}</span></li>
+        {{-- <li><span>delivery:</span> <span>Free</span></li> --}}
+        {{-- <li><span>discount:</span> <span>-15%</span></li> --}}
+        <li><span>total:</span> <span id="cart-total">${{ $cart->total }}</span></li>
+      </ul>
+      <div class="checkout-btn mt-100">
+        <a href="checkout.html" class="btn essence-btn">check out</a>
+      </div>
     </div>
+  </div>
 </div>
 <!-- ##### Right Side Cart End ##### -->
+
+<script type="text/javascript">
+  function removeFromCart(itemId) {
+    $.ajax({
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      type: 'POST',
+      url: 'cart-items/' + itemId,
+      data: {
+        _method: 'DELETE',
+      },
+      dataType: 'JSON',
+      success: function (data) {
+        alert('Item Removed');
+        $('#cart-item-' + data.deletedItemId).fadeOut(1000);
+        $('#cart-subtotal')[0].innerHTML = "$" + data.subtotal;
+        $('#cart-total')[0].innerHTML = "$" + data.total;
+      },
+      error: function (data) {
+        @if (config('app.env') == "local")
+          console.log('Request Status: ' + data.status + ' Status Text: ' + data.statusText + ' ' + data.responseText);
+          debugger;
+        @endif
+      },
+    });
+  }
+</script>

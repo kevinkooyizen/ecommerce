@@ -6,8 +6,10 @@ use Illuminate\Support\ServiceProvider;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Cart;
 use App\Models\Colour;
 
+use Auth;
 use View;
 
 class ViewComposerServiceProvider extends ServiceProvider {
@@ -18,6 +20,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
    */
   public function boot(){
     $this->filters();
+    $this->global();
   }
 
   /**
@@ -32,16 +35,29 @@ class ViewComposerServiceProvider extends ServiceProvider {
   /*
    * Compose the Default Variables.
    */
-	
-	public function filters(){
+  
+  public function global(){
+
     view()->composer('*', function () {
       $categories = Category::where('parent_id', 0)->get();
       foreach ($categories as $category) {
         $category->subcategories = Category::where('parent_id', $category->id)->get();
       }
       View::share('categories', $categories);
+
+      $cart = Cart::where('user_id', Auth::user()->id)->where('paid', false)->first();
+      $cartItems = [];
+      if ($cart) {
+        $cartItems = $cart->items;
+      }
+      View::share('cart', $cart);
+      View::share('cartItems', $cartItems);
     });
-    
+
+  }
+	
+	public function filters(){
+
     view()->composer('shop*', function () {
       $brands = Brand::all();
       $colours = Colour::all();
