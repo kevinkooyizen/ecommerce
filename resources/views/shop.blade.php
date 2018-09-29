@@ -19,89 +19,56 @@
 <section class="shop_grid_area section-padding-80">
   <div class="container">
     <div class="row">
+      {!! Form::open(['url' => 'shop', 'method' => 'GET', 'id' => 'searchForm']) !!}
+        <input type="hidden" name="brand" value="{{ $request->brand }}">
+        <input type="hidden" name="category" value="{{ $request->category }}">
+      {{ Form::close() }}
       <div class="col-12 col-md-4 col-lg-3">
         <div class="shop_sidebar_area">
 
           <!-- ##### Single Widget ##### -->
           <div class="widget catagory mb-50">
-              <!-- Widget Title -->
-              <h6 class="widget-title mb-30">Catagories</h6>
+            <!-- Widget Title -->
+                
+            <h6 class="widget-title mb-30">Categories</h6>
 
-              <!--  Catagories  -->
-              <div class="catagories-menu">
-                  <ul id="menu-content2" class="menu-content collapse show">
-                      <!-- Single Item -->
-                      <li data-toggle="collapse" data-target="#clothing">
-                          <a href="#">clothing</a>
-                          <ul class="sub-menu collapse show" id="clothing">
-                              <li><a href="#">All</a></li>
-                              <li><a href="#">Bodysuits</a></li>
-                              <li><a href="#">Dresses</a></li>
-                              <li><a href="#">Hoodies &amp; Sweats</a></li>
-                              <li><a href="#">Jackets &amp; Coats</a></li>
-                              <li><a href="#">Jeans</a></li>
-                              <li><a href="#">Pants &amp; Leggings</a></li>
-                              <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                              <li><a href="#">Shirts &amp; Blouses</a></li>
-                              <li><a href="#">Shirts</a></li>
-                              <li><a href="#">Sweaters &amp; Knits</a></li>
-                          </ul>
-                      </li>
-                      <!-- Single Item -->
-                      <li data-toggle="collapse" data-target="#shoes" class="collapsed">
-                          <a href="#">shoes</a>
-                          <ul class="sub-menu collapse" id="shoes">
-                              <li><a href="#">All</a></li>
-                              <li><a href="#">Bodysuits</a></li>
-                              <li><a href="#">Dresses</a></li>
-                              <li><a href="#">Hoodies &amp; Sweats</a></li>
-                              <li><a href="#">Jackets &amp; Coats</a></li>
-                              <li><a href="#">Jeans</a></li>
-                              <li><a href="#">Pants &amp; Leggings</a></li>
-                              <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                              <li><a href="#">Shirts &amp; Blouses</a></li>
-                              <li><a href="#">Shirts</a></li>
-                              <li><a href="#">Sweaters &amp; Knits</a></li>
-                          </ul>
-                      </li>
-                      <!-- Single Item -->
-                      <li data-toggle="collapse" data-target="#accessories" class="collapsed">
-                          <a href="#">accessories</a>
-                          <ul class="sub-menu collapse" id="accessories">
-                              <li><a href="#">All</a></li>
-                              <li><a href="#">Bodysuits</a></li>
-                              <li><a href="#">Dresses</a></li>
-                              <li><a href="#">Hoodies &amp; Sweats</a></li>
-                              <li><a href="#">Jackets &amp; Coats</a></li>
-                              <li><a href="#">Jeans</a></li>
-                              <li><a href="#">Pants &amp; Leggings</a></li>
-                              <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                              <li><a href="#">Shirts &amp; Blouses</a></li>
-                              <li><a href="#">Shirts</a></li>
-                              <li><a href="#">Sweaters &amp; Knits</a></li>
-                          </ul>
-                      </li>
-                  </ul>
-              </div>
+            <!--  Catagories  -->
+            <div class="catagories-menu">
+              <ul id="menu-content2" class="menu-content collapse show">
+                @foreach ($categories as $key => $category)
+                  <!-- Single Item -->
+                  <li data-toggle="collapse" data-target="#{{ $category->name }}" class="{{ $key != 0?'collapsed':'' }}">
+                    <a href="#">{{ $category->name }}</a>
+                    <ul class="sub-menu collapse {{ $key == 0?'show':'' }}" id="{{ $category->name }}">
+                      <li><a href="#" onclick="fillValue('category', '')">All</a></li>
+                      @foreach ($category->subcategories as $subcategory)
+                        <li><a href="#" onclick="fillValue('category', '{{ $subcategory->id }}')">{{ $subcategory->name }}</a></li>
+                      @endforeach
+                    </ul>
+                  </li>
+                @endforeach
+              </ul>
+            </div>
+              
           </div>
 
           <!-- ##### Single Widget ##### -->
           <div class="widget price mb-50">
-              <!-- Widget Title -->
-              <h6 class="widget-title mb-30">Filter by</h6>
-              <!-- Widget Title 2 -->
-              <p class="widget-title2 mb-30">Price</p>
+            <!-- Widget Title -->
+            <h6 class="widget-title mb-30">Filter by</h6>
+            <!-- Widget Title 2 -->
+            <p class="widget-title2 mb-30">Price</p>
 
-              <div class="widget-desc">
-                  <div class="slider-range">
-                      <div data-min="{{ round($items->min('price')) }}" data-max="{{ round($items->max('price')) }}" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="{{ round($items->min('price')) }}" data-value-max="{{ round($items->max('price')) }}" data-label-result="Range:">
-                          <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                          <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                          <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                      </div>
-                      <div class="range-price">Range: {{ $items->min('price') }} - {{ $items->max('price') }}</div>
-                  </div>
-              </div>
+            <div class="widget-desc">
+                <div class="slider-range">
+                    <div data-min="{{ round($items->min('price')) }}" data-max="{{ round($items->max('price')) }}" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="{{ round($items->min('price')) }}" data-value-max="{{ round($items->max('price')) }}" data-label-result="Range:">
+                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                    </div>
+                    <div class="range-price">Range: {{ $items->min('price') }} - {{ $items->max('price') }}</div>
+                </div>
+            </div>
           </div>
 
           <!-- ##### Single Widget ##### -->
@@ -130,16 +97,16 @@
             <p class="widget-title2 mb-30">Brands</p>
             <div class="widget-desc">
               <ul>
-                <li><a href="#">Asos</a></li>
-                <li><a href="#">Mango</a></li>
-                <li><a href="#">River Island</a></li>
-                <li><a href="#">Topshop</a></li>
-                <li><a href="#">Zara</a></li>
+                <li><a href="#" onclick="fillValue('brand', '')">All</a></li>
+                @foreach ($brands as $brand)
+                  <li><a href="#" onclick="fillValue('brand', '{{ $brand->id }}')">{{ $brand->name }}</a></li>
+                @endforeach
               </ul>
             </div>
           </div>
         </div>
       </div>
+      
 
       <div class="col-12 col-md-8 col-lg-9">
           <div class="shop_grid_product_area">
@@ -238,4 +205,11 @@
   </div>
 </section>
 <!-- ##### Shop Grid Area End ##### -->
+
+<script type="text/javascript">
+  function fillValue(key, value) {
+    $('[name=' + key + ']').val(value);
+    $('#searchForm').submit();
+  }
+</script>
 @endsection
