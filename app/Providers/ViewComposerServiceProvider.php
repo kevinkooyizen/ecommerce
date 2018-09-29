@@ -34,14 +34,17 @@ class ViewComposerServiceProvider extends ServiceProvider {
    */
 	
 	public function filters(){
-		view()->composer('shop*', function () {
+    view()->composer('*', function () {
       $categories = Category::where('parent_id', 0)->get();
       foreach ($categories as $category) {
         $category->subcategories = Category::where('parent_id', $category->id)->get();
       }
+      View::share('categories', $categories);
+    });
+    
+    view()->composer('shop*', function () {
       $brands = Brand::all();
       $colours = Colour::all();
-      View::share('categories', $categories);
       View::share('brands', $brands);
       View::share('colours', $colours);
     });
