@@ -5,16 +5,20 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
-class AppServiceProvider extends ServiceProvider
-{
+use Braintree_Transaction;
+
+class AppServiceProvider extends ServiceProvider {
     /**
      * Bootstrap any application services.
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
       Schema::defaultStringLength(191);
+      \Braintree_Configuration::environment(env('BRAINTREE_ENV'));
+      \Braintree_Configuration::merchantId(env('BRAINTREE_MERCHANT_ID'));
+      \Braintree_Configuration::publicKey(env('BRAINTREE_PUBLIC_KEY'));
+      \Braintree_Configuration::privateKey(env('BRAINTREE_PRIVATE_KEY'));
     }
 
     /**
