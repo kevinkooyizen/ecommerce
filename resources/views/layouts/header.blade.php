@@ -4,7 +4,7 @@
     <!-- Classy Menu -->
     <nav class="classy-navbar" id="essenceNav">
       <!-- Logo -->
-      <a class="nav-brand" href="/"><img src="img/core-img/logo.png" alt=""></a>
+      <a class="nav-brand" href="/"><img src="/img/core-img/logo.png" alt=""></a>
       <!-- Navbar Toggler -->
       <div class="classy-navbar-toggler">
         <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -43,7 +43,7 @@
                         <li><a href="/shop">Trench</a></li>
                     </ul> --}}
                     <div class="single-mega cn-col-4">
-                        <img src="img/bg-img/bg-6.jpg" alt="">
+                        <img src="/img/bg-img/bg-6.jpg" alt="">
                     </div>
                 </div>
             </li>
@@ -85,7 +85,7 @@
         <a href="#" class="dropdown-toggle d-flex w-100" data-toggle="dropdown">
           <div class="d-flex justify-content-center">
             <span class="text-nowrap position-static margin-right-10 margin-left-25">{{ Auth::user()?Auth::user()->name:'Login' }}</span>
-            <img class="h-100 margin-right-25" src="img/core-img/user.svg" alt="Login">
+            <img class="h-100 margin-right-25" src="/img/core-img/user.svg" alt="Login">
           </div>
         </a>
         @if (!Auth::user())
@@ -125,7 +125,7 @@
       @if (Auth::user())
         <!-- Cart Area -->
         <div class="cart-area">
-          <a href="#" id="essenceCartBtn"><img src="img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $cart?$cart->items->count():'' }}</span></a>
+          <a href="#" id="essenceCartBtn"><img src="/img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $cart?$cart->items->count():'' }}</span></a>
         </div>
       @endif
     </div>
@@ -142,7 +142,7 @@
 
     <!-- Cart Button -->
     <div class="cart-button">
-      <a href="#" id="rightSideCart"><img src="img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $cart?$cart->items->count():'' }}</span></a>
+      <a href="#" id="rightSideCart"><img src="/img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $cart?$cart->items->count():'' }}</span></a>
     </div>
 
     <div class="cart-content d-flex">
@@ -179,7 +179,7 @@
           <li><span>total:</span> <span id="cart-total">${{ $cart->total }}</span></li>
         </ul>
         <div class="checkout-btn mt-100">
-          <a href="checkout.html" class="btn essence-btn">check out</a>
+          <a href="/carts/{{ $cart->id }}" class="btn essence-btn">check out</a>
         </div>
       </div>
     </div>

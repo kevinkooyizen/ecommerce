@@ -23,8 +23,8 @@ class ItemsTableSeeder extends Seeder{
       $primaryKey = $key + 1;
       $secondaryKey = $key + 2;
       if ($secondaryKey == 10) $secondaryKey = 1;
-      $item->primary_image = "img/product-img/product-{$primaryKey}.jpg";
-      $item->secondary_image = "img/product-img/product-{$secondaryKey}.jpg";
+      $item->primary_image = "/img/product-img/product-{$primaryKey}.jpg";
+      $item->secondary_image = "/img/product-img/product-{$secondaryKey}.jpg";
       $item->new = rand(0,1);
       $item->price = $key + 1;
       $item->discount = rand(0,100);
