@@ -122,66 +122,70 @@
           </div>
         @endif
       </div>
-      <!-- Cart Area -->
-      <div class="cart-area">
-        <a href="#" id="essenceCartBtn"><img src="img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $cart?$cart->items->count():'' }}</span></a>
-      </div>
+      @if (Auth::user())
+        <!-- Cart Area -->
+        <div class="cart-area">
+          <a href="#" id="essenceCartBtn"><img src="img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $cart?$cart->items->count():'' }}</span></a>
+        </div>
+      @endif
     </div>
 
   </div>
 </header>
 <!-- ##### Header Area End ##### -->
 
-<!-- ##### Right Side Cart Area ##### -->
-<div class="cart-bg-overlay"></div>
+@if (Auth::user())
+  <!-- ##### Right Side Cart Area ##### -->
+  <div class="cart-bg-overlay"></div>
 
-<div class="right-side-cart-area">
+  <div class="right-side-cart-area">
 
-  <!-- Cart Button -->
-  <div class="cart-button">
-    <a href="#" id="rightSideCart"><img src="img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $cart?$cart->items->count():'' }}</span></a>
-  </div>
-
-  <div class="cart-content d-flex">
-
-    <!-- Cart List Area -->
-    <div class="cart-list">
-      @foreach ($cartItems as $cartItem)
-        <!-- Single Cart Item -->
-        <div class="single-cart-item" id="cart-item-{{ $cartItem->id }}">
-          <a href="#" class="product-image">
-            <img src="{{ $cartItem->item->primary_image }}" class="cart-thumb" alt="{{ $cartItem->item->name }}">
-            <!-- Cart Item Desc -->
-            <div class="cart-item-desc">
-              <span class="product-remove" onclick="removeFromCart('{{ $cartItem->id }}')"><i class="fa fa-close" aria-hidden="true"></i></span>
-                <span class="badge">{{ $cartItem->item->brand }}</span>
-                <h6>{{ $cartItem->item->name }}</h6>
-                {{-- <p class="size">Size: S</p> --}}
-                {{-- <p class="color">Color: Red</p> --}}
-                <p class="price">${{ $cartItem->item->price }}</p>
-            </div>
-          </a>
-        </div>
-      @endforeach
+    <!-- Cart Button -->
+    <div class="cart-button">
+      <a href="#" id="rightSideCart"><img src="img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $cart?$cart->items->count():'' }}</span></a>
     </div>
 
-    <!-- Cart Summary -->
-    <div class="cart-amount-summary">
+    <div class="cart-content d-flex">
 
-      <h2>Summary</h2>
-      <ul class="summary-table">
-        <li><span>subtotal:</span> <span id="cart-subtotal">${{ $cart->subtotal }}</span></li>
-        {{-- <li><span>delivery:</span> <span>Free</span></li> --}}
-        {{-- <li><span>discount:</span> <span>-15%</span></li> --}}
-        <li><span>total:</span> <span id="cart-total">${{ $cart->total }}</span></li>
-      </ul>
-      <div class="checkout-btn mt-100">
-        <a href="checkout.html" class="btn essence-btn">check out</a>
+      <!-- Cart List Area -->
+      <div class="cart-list">
+        @foreach ($cartItems as $cartItem)
+          <!-- Single Cart Item -->
+          <div class="single-cart-item" id="cart-item-{{ $cartItem->id }}">
+            <a href="#" class="product-image">
+              <img src="{{ $cartItem->item->primary_image }}" class="cart-thumb" alt="{{ $cartItem->item->name }}">
+              <!-- Cart Item Desc -->
+              <div class="cart-item-desc">
+                <span class="product-remove" onclick="removeFromCart('{{ $cartItem->id }}')"><i class="fa fa-close" aria-hidden="true"></i></span>
+                  <span class="badge">{{ $cartItem->item->brand }}</span>
+                  <h6>{{ $cartItem->item->name }}</h6>
+                  {{-- <p class="size">Size: S</p> --}}
+                  {{-- <p class="color">Color: Red</p> --}}
+                  <p class="price">${{ $cartItem->item->price }}</p>
+              </div>
+            </a>
+          </div>
+        @endforeach
+      </div>
+
+      <!-- Cart Summary -->
+      <div class="cart-amount-summary">
+
+        <h2>Summary</h2>
+        <ul class="summary-table">
+          <li><span>subtotal:</span> <span id="cart-subtotal">${{ $cart->subtotal }}</span></li>
+          {{-- <li><span>delivery:</span> <span>Free</span></li> --}}
+          {{-- <li><span>discount:</span> <span>-15%</span></li> --}}
+          <li><span>total:</span> <span id="cart-total">${{ $cart->total }}</span></li>
+        </ul>
+        <div class="checkout-btn mt-100">
+          <a href="checkout.html" class="btn essence-btn">check out</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!-- ##### Right Side Cart End ##### -->
+  <!-- ##### Right Side Cart End ##### -->
+@endif
 
 <script type="text/javascript">
   function removeFromCart(itemId) {
