@@ -8,7 +8,7 @@ class Item extends Model {
 
   public static function searchItem($request) {
     $items = Item::query();
-    if($request->search != 'all') $items->where('name','LIKE','%'.$request->search.'%');
+    if($request->search) $items->where('name','LIKE','%'.$request->search.'%');
     if($request->brand) $items->where('brand_id',$request->brand);
     if($request->colour) $items->where('colour_id',$request->colour);
     if($request->category) {
