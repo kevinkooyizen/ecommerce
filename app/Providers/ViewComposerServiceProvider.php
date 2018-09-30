@@ -46,7 +46,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
       View::share('categories', $categories);
 
       if (Auth::user()) {
-        $cart = Cart::where('user_id', Auth::user()->id)->where('paid', false)->first();
+        $cart = Cart::getCurrentUsersCart();
         $cartItems = [];
         if ($cart) {
           $cartItems = $cart->items;
