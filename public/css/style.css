@@ -15,5 +15,9 @@
 }
 
 .margin-right-10 {
-  margin-right: 10px; !important;
+  margin-right: 10px !important;
+}
+
+.font-weight-normal {
+  font-weight:normal !important;
 }

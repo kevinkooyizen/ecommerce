@@ -2,20 +2,27 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
-{
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
-    {
-      DB::table('users')->insert([
-        'name' => 'Developer',
-        'email' => 'system@admin.com',
-        'password' => bcrypt('123456'),
-        'admin' => true,
-      ]);
+class DatabaseSeeder extends Seeder {
+  protected $toTruncate = [
+    'users',
+    'colours',
+    'categories',
+    'brands',
+    'items',
+    'carts',
+    'cart_items',
+  ];
+
+  public function run() {
+    foreach($this->toTruncate as $table) {
+      DB::table($table)->truncate();
     }
+
+    $this->call(UsersTableSeeder::class);
+    $this->call(ColoursTableSeeder::class);
+    $this->call(CategoriesTableSeeder::class);
+    $this->call(BrandsTableSeeder::class);
+    $this->call(ItemsTableSeeder::class);
+    // $this->call(CartsTableSeeder::class);
+  }
 }

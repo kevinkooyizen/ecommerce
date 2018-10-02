@@ -1,10 +1,10 @@
-<!-- ##### Header Area Start ##### -->
+{{-- ##### Header Area Start ##### --}}
 <header class="header_area">
   <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
     <!-- Classy Menu -->
     <nav class="classy-navbar" id="essenceNav">
       <!-- Logo -->
-      <a class="nav-brand" href="/"><img src="img/core-img/logo.png" alt=""></a>
+      <a class="nav-brand" href="/"><img src="/img/core-img/logo.png" alt=""></a>
       <!-- Navbar Toggler -->
       <div class="classy-navbar-toggler">
         <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -18,17 +18,15 @@
         <!-- Nav Start -->
         <div class="classynav">
           <ul>
-            <li><a href="#">Shop</a>
+            <li><a href="/shop">Shop</a>
                 <div class="megamenu">
                     <ul class="single-mega cn-col-4">
                         <li class="title">Women's Collection</li>
-                        <li><a href="/shop">Dresses</a></li>
-                        <li><a href="/shop">Blouses &amp; Shirts</a></li>
-                        <li><a href="/shop">T-shirts</a></li>
-                        <li><a href="/shop">Rompers</a></li>
-                        <li><a href="/shop">Bras &amp; Panties</a></li>
+                        @foreach ($categories as $category)
+                          <li><a href="/shop?category={{ $category->id }}">{{ $category->name }}</a></li>
+                        @endforeach
                     </ul>
-                    <ul class="single-mega cn-col-4">
+                    {{-- <ul class="single-mega cn-col-4">
                         <li class="title">Men's Collection</li>
                         <li><a href="/shop">T-Shirts</a></li>
                         <li><a href="/shop">Polo</a></li>
@@ -43,26 +41,26 @@
                         <li><a href="/shop">T-shirts</a></li>
                         <li><a href="/shop">Jackets</a></li>
                         <li><a href="/shop">Trench</a></li>
-                    </ul>
+                    </ul> --}}
                     <div class="single-mega cn-col-4">
-                        <img src="img/bg-img/bg-6.jpg" alt="">
+                        <img src="/img/bg-img/bg-6.jpg" alt="">
                     </div>
                 </div>
             </li>
             <li><a href="#">Pages</a>
               <ul class="dropdown">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/shop">Shop</a></li>
-                <li><a href="single-product-details.html">Product Details</a></li>
-                <li><a href="checkout.html">Checkout</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="single-blog.html">Single Blog</a></li>
-                <li><a href="regular-page.html">Regular Page</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                {{-- <li><a href="single-product-details.html">Product Details</a></li> --}}
+                {{-- <li><a href="checkout.html">Checkout</a></li> --}}
+                {{-- <li><a href="blog.html">Blog</a></li> --}}
+                {{-- <li><a href="single-blog.html">Single Blog</a></li> --}}
+                {{-- <li><a href="regular-page.html">Regular Page</a></li> --}}
+                <li><a href="/contact">Contact</a></li>
               </ul>
             </li>
             {{-- <li><a href="blog.html">Blog</a></li> --}}
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
         <!-- Nav End -->
@@ -72,22 +70,22 @@
     <!-- Header Meta Data -->
     <div class="header-meta d-flex clearfix justify-content-end">
       <!-- Search Area -->
-      {{-- <div class="search-area">
-        <form action="#" method="post">
+      <div class="search-area">
+        {!! Form::open(['url' => '/shop', 'method' => 'GET']) !!}
           <input type="search" name="search" id="headerSearch" placeholder="Type for search">
           <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-        </form>
-      </div> --}}
+        {{ Form::close() }}
+      </div>
       <!-- Favourite Area -->
       {{-- <div class="favourite-area">
         <a href="#"><img src="img/core-img/heart.svg" alt=""></a>
       </div> --}}
       <!-- User Login Info -->
       <div class="user-login-info">
-        <a href="#" class="dropdown-toggle d-lg-flex w-100" data-toggle="dropdown">
-          <div class="d-lg-flex justify-content-center">
+        <a href="#" class="dropdown-toggle d-flex w-100" data-toggle="dropdown">
+          <div class="d-flex justify-content-center">
             <span class="text-nowrap position-static margin-right-10 margin-left-25">{{ Auth::user()?Auth::user()->name:'Login' }}</span>
-            <img class="h-100 margin-right-25" src="img/core-img/user.svg" alt="Login">
+            <img class="h-100 margin-right-25" src="/img/core-img/user.svg" alt="Login">
           </div>
         </a>
         @if (!Auth::user())
@@ -124,93 +122,102 @@
           </div>
         @endif
       </div>
-      <!-- Cart Area -->
-      <div class="cart-area">
-        <a href="#" id="essenceCartBtn"><img src="img/core-img/bag.svg" alt=""> <span>3</span></a>
-      </div>
+      @if (Auth::user())
+        <!-- Cart Area -->
+        <div class="cart-area">
+          <a href="#" id="essenceCartBtn"><img src="/img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $globalCart->items->count() }}</span></a>
+        </div>
+      @endif
     </div>
 
   </div>
 </header>
 <!-- ##### Header Area End ##### -->
 
-<!-- ##### Right Side Cart Area ##### -->
-<div class="cart-bg-overlay"></div>
+@if (Auth::user())
+  <!-- ##### Right Side Cart Area ##### -->
+  <div class="cart-bg-overlay"></div>
 
-<div class="right-side-cart-area">
+  <div class="right-side-cart-area">
 
     <!-- Cart Button -->
     <div class="cart-button">
-        <a href="#" id="rightSideCart"><img src="img/core-img/bag.svg" alt=""> <span>3</span></a>
+      <a href="#" id="rightSideCart"><img src="/img/core-img/bag.svg" alt=""><span class="cart-item-count">{{ $globalCart->items->count() }}</span></a>
     </div>
 
     <div class="cart-content d-flex">
 
-        <!-- Cart List Area -->
-        <div class="cart-list">
-            <!-- Single Cart Item -->
-            <div class="single-cart-item">
-                <a href="#" class="product-image">
-                    <img src="img/product-img/product-1.jpg" class="cart-thumb" alt="">
-                    <!-- Cart Item Desc -->
-                    <div class="cart-item-desc">
-                      <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                        <span class="badge">Mango</span>
-                        <h6>Button Through Strap Mini Dress</h6>
-                        <p class="size">Size: S</p>
-                        <p class="color">Color: Red</p>
-                        <p class="price">$45.00</p>
-                    </div>
-                </a>
-            </div>
+      <!-- Cart List Area -->
+      <div class="cart-list">
+        @foreach ($globalCartItems as $cartItem)
+          <!-- Single Cart Item -->
+          <div class="single-cart-item" id="cart-item-{{ $cartItem->id }}">
+            <a href="#" class="product-image">
+              <img src="{{ $cartItem->item->primary_image }}" class="cart-thumb" alt="{{ $cartItem->item->name }}">
+              <!-- Cart Item Desc -->
+              <div class="cart-item-desc">
+                <span class="product-remove" onclick="removeFromCart('{{ $cartItem->id }}')"><i class="fa fa-close" aria-hidden="true"></i></span>
+                  <span class="badge">{{ $cartItem->item->brand }}</span>
+                  <h6>{{ $cartItem->item->name }}</h6>
+                  {{-- <p class="size">Size: S</p> --}}
+                  {{-- <p class="color">Color: Red</p> --}}
+                  <p class="price">${{ $cartItem->item->price }}</p>
+              </div>
+            </a>
+          </div>
+        @endforeach
+      </div>
 
-            <!-- Single Cart Item -->
-            <div class="single-cart-item">
-                <a href="#" class="product-image">
-                    <img src="img/product-img/product-2.jpg" class="cart-thumb" alt="">
-                    <!-- Cart Item Desc -->
-                    <div class="cart-item-desc">
-                      <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                        <span class="badge">Mango</span>
-                        <h6>Button Through Strap Mini Dress</h6>
-                        <p class="size">Size: S</p>
-                        <p class="color">Color: Red</p>
-                        <p class="price">$45.00</p>
-                    </div>
-                </a>
-            </div>
+      <!-- Cart Summary -->
+      <div class="cart-amount-summary">
 
-            <!-- Single Cart Item -->
-            <div class="single-cart-item">
-                <a href="#" class="product-image">
-                    <img src="img/product-img/product-3.jpg" class="cart-thumb" alt="">
-                    <!-- Cart Item Desc -->
-                    <div class="cart-item-desc">
-                      <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                        <span class="badge">Mango</span>
-                        <h6>Button Through Strap Mini Dress</h6>
-                        <p class="size">Size: S</p>
-                        <p class="color">Color: Red</p>
-                        <p class="price">$45.00</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- Cart Summary -->
-        <div class="cart-amount-summary">
-
-            <h2>Summary</h2>
-            <ul class="summary-table">
-                <li><span>subtotal:</span> <span>$274.00</span></li>
-                <li><span>delivery:</span> <span>Free</span></li>
-                <li><span>discount:</span> <span>-15%</span></li>
-                <li><span>total:</span> <span>$232.00</span></li>
-            </ul>
-            <div class="checkout-btn mt-100">
-                <a href="checkout.html" class="btn essence-btn">check out</a>
-            </div>
-        </div>
+        <h2>Summary</h2>
+        <ul class="summary-table">
+          <li><span>subtotal:</span> <span id="cart-subtotal">${{ $globalCart->subtotal }}</span></li>
+          {{-- <li><span>delivery:</span> <span>Free</span></li> --}}
+          {{-- <li><span>discount:</span> <span>-15%</span></li> --}}
+          <li><span>total:</span> <span id="cart-total">${{ $globalCart->total }}</span></li>
+        </ul>
+        @if ($globalCart->total > 0)
+          <div class="checkout-btn mt-100">
+            <a href="/carts/{{ $globalCart->id }}" class="btn essence-btn">check out</a>
+          </div>
+        @endif
+      </div>
     </div>
-</div>
-<!-- ##### Right Side Cart End ##### -->
+  </div>
+  <!-- ##### Right Side Cart End ##### -->
+@endif
+
+<script type="text/javascript">
+  function removeFromCart(itemId) {
+    $.ajax({
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      type: 'POST',
+      url: 'cart-items/' + itemId,
+      data: {
+        _method: 'DELETE',
+      },
+      dataType: 'JSON',
+      success: function (data) {
+        alert('Item Removed');
+        $('#cart-item-' + data.deletedItemId).fadeOut(1000);
+        $('#cart-subtotal')[0].innerHTML = "$" + data.subtotal;
+        $('#cart-total')[0].innerHTML = "$" + data.total;
+        if (data.items) {
+          itemsCount = data.items.length;
+        } else if (!data.items) {
+          itemsCount = 0;
+        }
+        $('.cart-item-count')[0].innerHTML = itemsCount;
+        $('.cart-item-count')[1].innerHTML = itemsCount;
+      },
+      error: function (data) {
+        @if (config('app.env') == "local")
+          console.log('Request Status: ' + data.status + ' Status Text: ' + data.statusText + ' ' + data.responseText);
+          debugger;
+        @endif
+      },
+    });
+  }
+</script>
