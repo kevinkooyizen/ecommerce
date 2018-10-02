@@ -125,7 +125,7 @@
       @if (Auth::user())
         <!-- Cart Area -->
         <div class="cart-area">
-          <a href="#" id="essenceCartBtn"><img src="/img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $cart?$cart->items->count():'' }}</span></a>
+          <a href="#" id="essenceCartBtn"><img src="/img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $globalCart->items->count() }}</span></a>
         </div>
       @endif
     </div>
@@ -142,14 +142,14 @@
 
     <!-- Cart Button -->
     <div class="cart-button">
-      <a href="#" id="rightSideCart"><img src="/img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $cart?$cart->items->count():'' }}</span></a>
+      <a href="#" id="rightSideCart"><img src="/img/core-img/bag.svg" alt=""><span class="cart-item-count">{{ $globalCart->items->count() }}</span></a>
     </div>
 
     <div class="cart-content d-flex">
 
       <!-- Cart List Area -->
       <div class="cart-list">
-        @foreach ($cartItems as $cartItem)
+        @foreach ($globalCartItems as $cartItem)
           <!-- Single Cart Item -->
           <div class="single-cart-item" id="cart-item-{{ $cartItem->id }}">
             <a href="#" class="product-image">
@@ -173,14 +173,16 @@
 
         <h2>Summary</h2>
         <ul class="summary-table">
-          <li><span>subtotal:</span> <span id="cart-subtotal">${{ $cart->subtotal }}</span></li>
+          <li><span>subtotal:</span> <span id="cart-subtotal">${{ $globalCart->subtotal }}</span></li>
           {{-- <li><span>delivery:</span> <span>Free</span></li> --}}
           {{-- <li><span>discount:</span> <span>-15%</span></li> --}}
-          <li><span>total:</span> <span id="cart-total">${{ $cart->total }}</span></li>
+          <li><span>total:</span> <span id="cart-total">${{ $globalCart->total }}</span></li>
         </ul>
-        <div class="checkout-btn mt-100">
-          <a href="/carts/{{ $cart->id }}" class="btn essence-btn">check out</a>
-        </div>
+        @if ($globalCart->total > 0)
+          <div class="checkout-btn mt-100">
+            <a href="/carts/{{ $globalCart->id }}" class="btn essence-btn">check out</a>
+          </div>
+        @endif
       </div>
     </div>
   </div>

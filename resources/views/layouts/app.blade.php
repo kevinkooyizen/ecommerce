@@ -45,6 +45,7 @@
   <script src="/js/classy-nav.min.js"></script>
   <!-- Active js -->
   <script src="/js/active.js"></script>
+  <script src="/js/number-check.js"></script>
   <!--end::Base Scripts -->
   @stack('scripts')
 </body>
