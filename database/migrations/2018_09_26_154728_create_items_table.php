@@ -19,9 +19,9 @@ class CreateItemsTable extends Migration
             $table->integer('category_id')->default(0);
             $table->integer('brand_id')->default(0);
             $table->integer('colour_id')->default(0);
-            $table->string('primary_image');
-            $table->string('secondary_image');
-            $table->boolean('new');
+            $table->string('primary_image')->default(null);
+            $table->string('secondary_image')->default(null)->nullable();
+            $table->boolean('new')->default(1);
             $table->decimal('price', 8,2)->default(0.00);
             $table->decimal('discount', 6,2)->default(0.00);
             $table->timestamps();

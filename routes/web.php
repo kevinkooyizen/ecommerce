@@ -11,6 +11,7 @@ Route::get('users', 'UsersController@show');
 
 // Shopping Routes
 Route::get('shop', 'ItemsController@index');
+Route::resource('items', 'ItemsController');
 Route::resource('cart-items', 'CartItemsController');
 Route::resource('carts', 'CartsController');
 

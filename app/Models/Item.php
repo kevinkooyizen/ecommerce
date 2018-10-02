@@ -6,6 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model {
 
+  protected $fillable = [
+    'name',
+    'category_id',
+    'brand_id',
+    'colour_id',
+    'primary_image',
+    'secondary_image',
+    'new',
+    'price',
+    'discount',
+  ];
+
   public static function searchItem($request) {
     $items = Item::query();
     if($request->search) $items->where('name','LIKE','%'.$request->search.'%');

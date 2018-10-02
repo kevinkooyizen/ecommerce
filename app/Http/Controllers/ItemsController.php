@@ -11,20 +11,33 @@ use Route;
 
 use Illuminate\Http\Request;
 
-class ItemsController extends Controller
-{
+class ItemsController extends Controller {
   public function index(Request $request) {
     $items = Item::searchItem($request);
 
     $request->minPrice = $items->min('price');
     $request->maxPrice = $items->max('price');
 
-    return view('shop', compact('items', 'request'));
+    return view('items.index', compact('items', 'request'));
+  }
+
+  public function create(Request $request) {
+    $items = new Item;
+
+    return view('items.create', compact('item'));
   }
 
   public function store(Request $request) {
-    User::createAdmin($request);
+    $item = Item::create($request->all());
+    $item = storeImage($item, $request);
+    $item->save();
 
-    return redirect('admins')->with('success', 'User created');
+    return redirect("items/$item->id");
+  }
+
+  public function show($itemId) {
+    $items = Item::find($itemId);
+
+    return view('items.show', compact('item'));
   }
 }

@@ -51,8 +51,9 @@ class ViewComposerServiceProvider extends ServiceProvider {
         if ($cart) {
           $cartItems = $cart->items;
         }
-        View::share('cart', $cart);
-        View::share('cartItems', $cartItems);
+
+        View::share('globalCart', $cart);
+        View::share('globalCartItems', $cartItems);
       }
 
     });
@@ -61,7 +62,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
 	
 	public function filters(){
 
-    view()->composer('shop*', function () {
+    view()->composer('items*', function () {
       $brands = Brand::all();
       $colours = Colour::all();
       View::share('brands', $brands);
