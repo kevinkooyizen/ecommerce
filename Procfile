@@ -1,1 +1,1 @@
-web : /home/zen/Documents/Coding/PHP/ecommerce public/
+web: vendor/bin/heroku-php-apache2 public/
