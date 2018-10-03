@@ -8,8 +8,8 @@ use Auth;
 
 class Order extends Model {
 
-  public function items() {
-    return $this->hasMany(OrderItem::class);
+  public function cart_item() {
+    return $this->hasMany(CartItem::class);
   }
 
 }
