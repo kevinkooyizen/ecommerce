@@ -8,8 +8,12 @@ use Auth;
 
 class Order extends Model {
 
-  public function cart_item() {
-    return $this->hasMany(CartItem::class);
+  public function item() {
+    return $this->belongsTo(Item::class);
+  }
+
+  public function status() {
+    return $this->belongsTo(Status::class);
   }
 
 }
