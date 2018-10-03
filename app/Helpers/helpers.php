@@ -7,8 +7,8 @@ function storeImage($document, $request){
       if ($document->value != '') {
         Storage::delete($document->key);
       }
-      $filename = $request->file($key)->store('/public/' . Auth::user()->id . "/images/items/$document->id");
-      $document->{$key} = $filename;
+      $filename = $request->file($key)->store('public/' . Auth::user()->id . "/images/items/$document->id");
+      $document->{$key} = "/storage/" . str_replace("public/", "", $filename);
     }
   }
 
