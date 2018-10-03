@@ -28,9 +28,7 @@ class ItemsController extends Controller {
   }
 
   public function store(Request $request) {
-    $item = Item::create($request->all());
-    $item = storeImage($item, $request);
-    $item->save();
+    $item = Item::storeItem($request);
 
     return redirect("items/$item->id");
   }

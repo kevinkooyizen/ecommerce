@@ -17,6 +17,7 @@ class ItemsTableSeeder extends Seeder{
     foreach ($names as $key => $name) {
       $item = new Item;
       $item->name = $names[$key];
+      $item->user_id = 1;
       $item->category_id = $clothingCategory->id;
       $item->brand_id = $key + 1;
       $item->colour_id = $key + 1;
