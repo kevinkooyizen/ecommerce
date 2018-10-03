@@ -11,9 +11,9 @@
 
   <title>{{ config('app.name', 'E-Commerce') }}</title>
 
-  <link rel="icon" href="img/core-img/favicon.ico">
+  <link rel="icon" href="/favicon.ico">
 
-  <link rel="shortcut icon" href="img/core-img/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
 
   <!--begin::Base Styles -->
   <link rel="stylesheet" type="text/css" href="/css/core-style.css">
