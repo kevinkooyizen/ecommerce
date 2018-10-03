@@ -8,6 +8,7 @@ class Item extends Model {
 
   protected $fillable = [
     'name',
+    'user_id',
     'category_id',
     'brand_id',
     'colour_id',
@@ -42,6 +43,14 @@ class Item extends Model {
     $items = $items->paginate(9);
 
     return $items;
+  }
+
+  public static function storeItem($request) {
+    $item = Item::create($request->all());
+    $item = storeImage($item, $request);
+    $item->save();
+
+    return $item;
   }
   
 }
