@@ -125,7 +125,8 @@
       @if (Auth::user())
         <!-- Cart Area -->
         <div class="cart-area">
-          <a href="#" id="essenceCartBtn"><img src="/img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $globalCart->items->count() }}</span></a>
+          {{-- <a href="#" id="essenceCartBtn"><img src="/img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $globalCart->items->count() }}</span></a> --}}
+          <a href="/carts/{{ $globalCart->id }}"><img src="/img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $globalCart->items->count() }}</span></a>
         </div>
       @endif
     </div>

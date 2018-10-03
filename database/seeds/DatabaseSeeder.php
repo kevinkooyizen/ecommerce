@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder {
     'carts',
     'cart_items',
     'orders',
-    'order_items',
     'statuses',
   ];
 
