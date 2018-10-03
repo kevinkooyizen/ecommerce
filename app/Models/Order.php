@@ -8,8 +8,12 @@ use Auth;
 
 class Order extends Model {
 
-  public function items() {
-    return $this->hasMany(OrderItem::class);
+  public function item() {
+    return $this->belongsTo(Item::class);
+  }
+
+  public function status() {
+    return $this->belongsTo(Status::class);
   }
 
 }

@@ -20,14 +20,18 @@ class CartItemsController extends Controller {
     return response()->json($cart);
   }
 
-  public function destroy($itemId) {
+  public function destroy(Request $request, $itemId) {
+    $cart = Cart::getCurrentUsersCart();
     CartItem::removeFromCart($itemId);
 
-    $cart = Cart::getCurrentUsersCart();
     $cart->deletedItemId = $itemId;
     $cart->items = $cart->items;
 
-    return response()->json($cart);
+    if ($request->ajax()) {
+      return response()->json($cart);
+    } elseif (!$request->ajax()) {
+      return redirect("/carts/$cart->id");
+    }
   }
 
 }
