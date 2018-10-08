@@ -10,6 +10,10 @@ use Braintree_Transaction;
 
 class PaymentsController extends Controller {
 
+  public function __construct(){
+    $this->middleware('auth');
+  }
+
   public function create(Request $request) {
     $cart = Cart::find($request->cartId);
     return view('payments.create', compact('cart'));

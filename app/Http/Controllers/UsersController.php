@@ -8,6 +8,11 @@ use Auth;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller {
+
+  public function __construct(){
+    $this->middleware('auth');
+  }
+  
   public function show(Request $request) {
     if (Auth::user()) {
       return response()->json(Auth::user());

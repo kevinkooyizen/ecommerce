@@ -13,6 +13,10 @@ use Auth;
 
 class OrdersController extends Controller {
 
+  public function __construct(){
+    $this->middleware('auth');
+  }
+
   public function show(Request $request, $salesOrPurchases) {
     if ($salesOrPurchases == "purchase-requests") {
       $orders = Order::where('user_id', Auth::user()->id)->get();

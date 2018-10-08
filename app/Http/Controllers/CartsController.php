@@ -14,6 +14,10 @@ use Illuminate\Http\Request;
 
 class CartsController extends Controller {
 
+  public function __construct(){
+    $this->middleware('auth');
+  }
+
   public function index(Request $request) {
     $item = Item::searchItem($request);
 
