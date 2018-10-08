@@ -11,7 +11,7 @@ class StatusesTableSeeder extends Seeder{
    * @return void
    */
   public function run() {
-    $names = ['New', 'Pending', 'Cancelled'];
+    $names = ['New', 'Pending', 'Cancelled', 'Accepted'];
     foreach ($names as $name) {
       $colour = new Status;
       $colour->name = $name;

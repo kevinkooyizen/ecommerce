@@ -47,18 +47,18 @@
                     </div>
                 </div>
             </li>
-            <li><a href="#">Pages</a>
+            {{-- <li><a href="#">Pages</a>
               <ul class="dropdown">
                 <li><a href="/">Home</a></li>
                 <li><a href="/shop">Shop</a></li>
-                {{-- <li><a href="single-product-details.html">Product Details</a></li> --}}
-                {{-- <li><a href="checkout.html">Checkout</a></li> --}}
-                {{-- <li><a href="blog.html">Blog</a></li> --}}
-                {{-- <li><a href="single-blog.html">Single Blog</a></li> --}}
-                {{-- <li><a href="regular-page.html">Regular Page</a></li> --}}
+                <li><a href="single-product-details.html">Product Details</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="single-blog.html">Single Blog</a></li>
+                <li><a href="regular-page.html">Regular Page</a></li>
                 <li><a href="/contact">Contact</a></li>
               </ul>
-            </li>
+            </li> --}}
             {{-- <li><a href="blog.html">Blog</a></li> --}}
             <li><a href="/contact">Contact</a></li>
           </ul>
@@ -114,7 +114,9 @@
           </div>
         @else
           <div class="dropdown-menu">
-            <a class="dropdown-item line-height-20 text-left w-100" href="/items/create">Add Item</a>
+            <a class="dropdown-item line-height-20 text-left w-100" href="/items/owner-shop">My Shop</a>
+            <a class="dropdown-item line-height-20 text-left w-100" href="/orders/purchase-requests">Purchase Orders</a>
+            <a class="dropdown-item line-height-20 text-left w-100" href="/orders/sale-requests">Sales Orders</a>
             <a class="dropdown-item line-height-20 text-left w-100" href="#" onclick="$('#logoutForm').submit();">Logout</a>
             {!! Form::open(['url' => '/logout', 'method' => 'POST', 'id' => 'logoutForm']) !!}
               <input type="hidden" name="currentRoute" value="{{ Route::getFacadeRoot()->current()->uri() }}">

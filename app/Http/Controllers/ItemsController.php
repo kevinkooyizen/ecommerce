@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Item;
 
+use Auth;
 use DB;
 use Input;
 use Route;
@@ -33,9 +34,15 @@ class ItemsController extends Controller {
     return redirect("items/$item->id");
   }
 
-  public function show($itemId) {
-    $items = Item::find($itemId);
+  public function show(Request $request, $variable) {
+    if ($variable == "owner-shop") {
+      $items = Item::where('user_id', Auth::user()->id)->paginate(9);
 
-    return view('items.show', compact('item'));
+      return view('items.owner_shop', compact('items', 'request'));
+    } else {
+      $items = Item::find($variable);
+
+      return view('items.show', compact('item'));
+    }
   }
 }
