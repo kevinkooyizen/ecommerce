@@ -14,23 +14,21 @@ use Auth;
 class OrdersController extends Controller {
 
   public function show(Request $request, $salesOrPurchases) {
-    if ($salesOrPurchases == "purchases") {
+    if ($salesOrPurchases == "purchase-requests") {
       $orders = Order::where('user_id', Auth::user()->id)->get();
     }
     return view('orders.show', compact('orders'));
   }
 
   public function store(Request $request) {
-    $cart = Cart::find($request->cart_id);
-    $cartItems = $cart->items;
-    foreach ($cartItems as $cartItem) {
+    foreach ($request->selectedItem as $cartItemId) {
       $order = new Order;
       $order->user_id = $request->user_id;
-      $order->item_id = $cartItem->item_id;
-      $order->status_id = Status::pendingStatus()->id;
+      $order->item_id = $cartItemId;
+      $order->status_id = Status::getStatus('Pending')->id;
       $order->save();
 
-      CartItem::destroy($cartItem->id);
+      CartItem::destroy($cartItemId);
     }
 
     return redirect('orders/purchases');
@@ -41,13 +39,13 @@ class OrdersController extends Controller {
     $order->status_id = $request->status_id;
     $order->save();
 
-    return redirect('orders/purchases');
+    return redirect('orders/purchase-requests');
   }
 
   public function destroy(Request $request, $orderId) {
     Order::destroy($orderId);
 
-    return redirect('orders/purchases');
+    return redirect('orders/purchase-requests');
   }
 
 }

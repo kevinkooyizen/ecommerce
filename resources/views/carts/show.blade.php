@@ -9,7 +9,7 @@
       <div class="col-12 col-md-12">
         <div class="checkout_details_area mt-50 clearfix">
           @if (!$cartItems->isEmpty())
-            {!! Form::open(['url' => "requests", 'method' => 'POST']) !!}
+            {!! Form::open(['url' => "orders", 'method' => 'POST']) !!}
               <input type="hidden" name="cart_id" value="{{ $cart->id }}">
               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
               <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -25,7 +25,7 @@
                 <tbody>
                   @foreach ($cartItems as $cartItem)
                     <tr style="max-height: 200px;">
-                      <td><input type="checkbox" name="selected[]" value="{{ $cartItem->id }}"></td>
+                      <td><input type="checkbox" name="selectedItem[]" value="{{ $cartItem->id }}"></td>
                       <td><img src="{{ $cartItem->item->primary_image }}"></td>
                       <td>{{ $cartItem->item->name }}</td>
                       <td>{{ $cartItem->item->price }}</td>
