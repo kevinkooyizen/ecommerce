@@ -115,6 +115,8 @@
         @else
           <div class="dropdown-menu">
             <a class="dropdown-item line-height-20 text-left w-100" href="/items/owner-shop">My Shop</a>
+            <a class="dropdown-item line-height-20 text-left w-100" href="/orders/purchase-requests">Purchase Orders</a>
+            <a class="dropdown-item line-height-20 text-left w-100" href="/orders/sale-requests">Sales Orders</a>
             <a class="dropdown-item line-height-20 text-left w-100" href="#" onclick="$('#logoutForm').submit();">Logout</a>
             {!! Form::open(['url' => '/logout', 'method' => 'POST', 'id' => 'logoutForm']) !!}
               <input type="hidden" name="currentRoute" value="{{ Route::getFacadeRoot()->current()->uri() }}">

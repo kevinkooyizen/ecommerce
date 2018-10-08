@@ -16,8 +16,13 @@ class OrdersController extends Controller {
   public function show(Request $request, $salesOrPurchases) {
     if ($salesOrPurchases == "purchase-requests") {
       $orders = Order::where('user_id', Auth::user()->id)->get();
+    } elseif ($salesOrPurchases == "sale-requests") {
+      $orders = Order::join('items', 'item_id', 'items.id')
+        ->where('items.user_id', Auth::user()->id)
+        ->where('orders.status_id', '!=', Status::getStatus('Cancelled')->id)
+        ->get();
     }
-    return view('orders.show', compact('orders'));
+    return view('orders.show', compact('orders', 'salesOrPurchases'));
   }
 
   public function store(Request $request) {
@@ -31,7 +36,7 @@ class OrdersController extends Controller {
       CartItem::destroy($cartItemId);
     }
 
-    return redirect('orders/purchases');
+    return redirect('orders/purchase-requests');
   }
 
   public function update(Request $request, $orderId) {
@@ -39,7 +44,7 @@ class OrdersController extends Controller {
     $order->status_id = $request->status_id;
     $order->save();
 
-    return redirect('orders/purchase-requests');
+    return redirect("orders/$request->salesOrPurchases");
   }
 
   public function destroy(Request $request, $orderId) {
