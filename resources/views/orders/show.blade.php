@@ -27,16 +27,25 @@
                     <td>{{ $order->item->price }}</td>
                     <td>{{ $order->status->name }}</td>
                       <td>
-                        @if ($order->status_id != \App\Models\Status::cancelledStatus()->id)
+                        @if ($salesOrPurchases == "purchase-requests" && $order->status_id != \App\Models\Status::getStatus('Accepted')->id)
+                          @if ($order->status_id != \App\Models\Status::getStatus('Cancelled')->id)
+                            {!! Form::open(['url' => "orders/$order->id", 'method' => 'PUT']) !!}
+                              <input type="hidden" name="status_id" value="{{ \App\Models\Status::getStatus('Cancelled')->id }}">
+                              <input type="hidden" name="salesOrPurchases" value="{{ $salesOrPurchases }}">
+                              <button class="btn btn-danger">Cancel</button>
+                            {{ Form::close() }}
+                            <br>
+                          @elseif ($order->status_id == \App\Models\Status::getStatus('Cancelled')->id)
+                            {!! Form::open(['url' => "orders/$order->id", 'method' => 'DELETE']) !!}
+                              <input type="hidden" name="salesOrPurchases" value="{{ $salesOrPurchases }}">
+                              <button class="btn btn-danger">Delete</button>
+                            {{ Form::close() }}
+                          @endif
+                        @elseif ($salesOrPurchases == "sale-requests" && $order->status_id != \App\Models\Status::getStatus('Accepted')->id)
                           {!! Form::open(['url' => "orders/$order->id", 'method' => 'PUT']) !!}
-                            <input type="hidden" name="status_id" value="{{ \App\Models\Status::cancelledStatus()->id }}">
-                            <button class="btn btn-danger">Cancel</button>
-                          {{ Form::close() }}
-                          <br>
-                        @endif
-                        @if ($order->status_id == \App\Models\Status::cancelledStatus()->id)
-                          {!! Form::open(['url' => "orders/$order->id", 'method' => 'DELETE']) !!}
-                            <button class="btn btn-danger">Delete</button>
+                            <input type="hidden" name="status_id" value="{{ \App\Models\Status::getStatus('Accepted')->id }}">
+                            <input type="hidden" name="salesOrPurchases" value="{{ $salesOrPurchases }}">
+                            <button class="btn btn-danger">Accept</button>
                           {{ Form::close() }}
                         @endif
                       </td>

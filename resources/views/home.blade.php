@@ -23,25 +23,25 @@
         <div class="row justify-content-center">
             <!-- Single Catagory -->
             <div class="col-12 col-sm-6 col-md-4">
-                <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
+                <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(img/bg-img/korea.jpg);">
                     <div class="catagory-content">
-                        <a href="#">Clothing</a>
+                        <a href="#">Korea</a>
                     </div>
                 </div>
             </div>
             <!-- Single Catagory -->
             <div class="col-12 col-sm-6 col-md-4">
-                <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(img/bg-img/bg-3.jpg);">
+                <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(img/bg-img/japan.jpg);">
                     <div class="catagory-content">
-                        <a href="#">Shoes</a>
+                        <a href="#">Japan</a>
                     </div>
                 </div>
             </div>
             <!-- Single Catagory -->
             <div class="col-12 col-sm-6 col-md-4">
-                <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(img/bg-img/bg-4.jpg);">
+                <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(img/bg-img/taiwan.jpg);">
                     <div class="catagory-content">
-                        <a href="#">Accessories</a>
+                        <a href="#">Taiwan</a>
                     </div>
                 </div>
             </div>

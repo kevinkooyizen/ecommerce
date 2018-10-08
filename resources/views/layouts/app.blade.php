@@ -16,12 +16,20 @@
   <link rel="shortcut icon" href="/favicon.ico">
 
   <!--begin::Base Styles -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Ubuntu:300,400,500,700">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/classy-nav.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/owl.carousel.css">
+  <link rel="stylesheet" type="text/css" href="/css/animate.css">
+  <link rel="stylesheet" type="text/css" href="/css/magnific-popup.css">
+  <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/nice-select.css">
+  <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="/css/core-style.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <!--end::Base Styles -->
   
   <!-- Scripts -->
-  <script src="https://js.braintreegateway.com/web/dropin/1.8.1/js/dropin.min.js"></script>
   {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
