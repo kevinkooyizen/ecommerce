@@ -18,4 +18,8 @@ class Status extends Model {
     return Status::where('name', "Cancelled")->first();
   }
 
+  public static function getStatus($status) {
+    return Status::where('name', $status)->first();
+  }
+
 }
