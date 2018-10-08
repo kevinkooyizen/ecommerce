@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class CartItemsController extends Controller {
 
+  public function __construct(){
+    $this->middleware('auth');
+  }
+
   public function store(Request $request) {
     $item = CartItem::addItemToCart($request->itemId);
 

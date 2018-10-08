@@ -20,6 +20,7 @@ Route::resource('carts', 'CartsController');
 Route::get('reset-password', function(){return view('auth.passwords.reset');});
 Route::post('reset-password', 'SettingsController@resetPassword');
 Auth::routes();
+Route::get('login', function(){return redirect('/');})->name('login');
 
 // Admin Routes
 Route::resource('admins', 'AdminController');
