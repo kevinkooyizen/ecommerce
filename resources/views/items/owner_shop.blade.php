@@ -135,9 +135,11 @@
                       <div class="single-product-wrapper">
                           <!-- Product Image -->
                           <div class="product-img">
-                            <img src="{{ $item->primary_image }}" alt="">
-                            <!-- Hover Thumb -->
-                            <img class="hover-img" src="{{ $item->secondary_image }}" alt="">
+                            <a href="/items/{{ $item->id }}">
+                              <img src="{{ $item->primary_image }}" alt="">
+                              <!-- Hover Thumb -->
+                              <img class="hover-img" src="{{ $item->secondary_image }}" alt="">
+                            </a>
 
                             <!-- Product Badge -->
                             @if ($item->discount > 0)
@@ -158,7 +160,7 @@
 
                           <!-- Product Description -->
                           <div class="product-description">
-                            <span>{{ $item->brand }}</span>
+                            <span>{{ $item->brand->name }}</span>
                             <a href="single-product-details.html">
                               <h6>{{ $item->name }}</h6>
                             </a>
