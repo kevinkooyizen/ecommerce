@@ -45,7 +45,7 @@
                           {!! Form::open(['url' => "orders/$order->id", 'method' => 'PUT']) !!}
                             <input type="hidden" name="status_id" value="{{ \App\Models\Status::getStatus('Accepted')->id }}">
                             <input type="hidden" name="salesOrPurchases" value="{{ $salesOrPurchases }}">
-                            <button class="btn btn-danger">Accept</button>
+                            <button class="btn btn-success">Accept</button>
                           {{ Form::close() }}
                         @endif
                       </td>
