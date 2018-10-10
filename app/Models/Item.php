@@ -49,7 +49,10 @@ class Item extends Model {
     if($request->sort == "expensive") $items->orderBy('price', 'DESC');
     if($request->sort == "cheap") $items->orderBy('price', 'ASC');
 
-    $items = $items->where('user_id', '!=', Auth::user()->id)->paginate(9);
+    if (Auth::user()) {
+      $items->where('user_id', '!=', Auth::user()->id);
+    }
+    $items = $items->paginate(9);
 
     return $items;
   }
