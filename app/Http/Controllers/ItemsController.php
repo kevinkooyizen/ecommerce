@@ -40,7 +40,7 @@ class ItemsController extends Controller {
 
       return view('items.owner_shop', compact('items', 'request'));
     } else {
-      $items = Item::find($variable);
+      $item = Item::find($variable);
 
       return view('items.show', compact('item'));
     }

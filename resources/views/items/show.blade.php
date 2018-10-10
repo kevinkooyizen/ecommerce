@@ -2,54 +2,100 @@
 
 @section('content')
 <!-- ##### Single Product Details Area Start ##### -->
-<section class="single_product_details_area d-flex align-items-center">
+<section class="single_product_details_area d-flex">
 
   <!-- Single Product Thumb -->
-  <div class="single_product_thumb clearfix">
-    <div class="product_thumbnail_slides owl-carousel">
-      <img src="img/product-img/product-big-1.jpg" alt="">
-      <img src="img/product-img/product-big-2.jpg" alt="">
-      <img src="img/product-img/product-big-3.jpg" alt="">
-    </div>
+  <div class="single_product_thumb">
+    <img src="{{ $item->primary_image }}" alt="">
   </div>
 
   <!-- Single Product Description -->
   <div class="single_product_desc clearfix">
-    <span>mango</span>
-    <a href="cart.html">
-      <h2>One Shoulder Glitter Midi Dress</h2>
-    </a>
-    <p class="product-price"><span class="old-price">$65.00</span> $49.00</p>
-    <p class="product-desc">Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna vehicula, nec maximus est sollicitudin.</p>
+    <span>{{ $item->brand->name }}</span>
+    <h2>{{ $item->name }}</h2>
+    <p class="product-price">RM {{ $item->price }}</p>
+    <p class="product-desc">{{ $item->description }}</p>
 
     <!-- Form -->
-    <form class="cart-form clearfix" method="post">
-      <!-- Select Box -->
-      <div class="select-box d-flex mt-50 mb-30">
-        <select name="select" id="productSize" class="mr-5">
-          <option value="value">Size: XL</option>
-          <option value="value">Size: X</option>
-          <option value="value">Size: M</option>
-          <option value="value">Size: S</option>
-        </select>
-        <select name="select" id="productColor">
-          <option value="value">Color: Black</option>
-          <option value="value">Color: White</option>
-          <option value="value">Color: Red</option>
-          <option value="value">Color: Purple</option>
-        </select>
-      </div>
+    <form class="cart-form clearfix" action="#">
       <!-- Cart & Favourite Box -->
       <div class="cart-fav-box d-flex align-items-center">
         <!-- Cart -->
-        <button type="submit" name="addtocart" value="5" class="btn essence-btn">Add to cart</button>
+        <button type="button" class="btn essence-btn" onclick="addToCart('{{ $item->id }}')">Add to cart</button>
         <!-- Favourite -->
         <div class="product-favourite ml-4">
-          <a href="#" class="favme fa fa-heart"></a>
+          {{-- <a href="#" class="favme fa fa-heart"></a> --}}
         </div>
       </div>
     </form>
   </div>
 </section>
 <!-- ##### Single Product Details Area End ##### -->
+
+<script type="text/javascript">
+  function addToCart(itemId) {
+    status = checkLoggedIn();
+    if (status == "false") return false;
+    $.ajax({
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      type: 'POST',
+      url: '/cart-items',
+      data: {
+        itemId: itemId
+      },
+      dataType: 'JSON',
+      success: function (data) {
+        alert('Item Added');
+        $('.cart-list').append('\
+          <div class="single-cart-item" id="cart-item-' + data.id + '">\
+            <a href="#" class="product-image">\
+              <img src="' + data.addedItemProperties.primary_image + '" class="cart-thumb" alt="' + data.addedItemProperties.name + '">\
+              <div class="cart-item-desc">\
+                <span class="product-remove" onclick="removeFromCart(' + data.id + ')"><i class="fa fa-close" aria-hidden="true"></i></span>\
+                  <span class="badge">' + data.addedItemProperties.brand + '</span>\
+                  <h6>' + data.addedItemProperties.name + '</h6>\
+                  <p class="price">$' + data.addedItemProperties.price + '</p>\
+              </div>\
+            </a>\
+          </div>\
+        ');
+        $('#cart-subtotal')[0].innerHTML = "$" + data.subtotal;
+        $('#cart-total')[0].innerHTML = "$" + data.total;
+        $('.cart-item-count')[0].innerHTML = data.items.length;
+        $('.cart-item-count')[1].innerHTML = data.items.length;
+      },
+      error: function (data) {
+        @if (config('app.env') == "local")
+          console.log('Request Status: ' + data.status + ' Status Text: ' + data.statusText + ' ' + data.responseText);
+          debugger;
+        @endif
+      },
+    });
+  }
+
+  function checkLoggedIn() {
+    $.ajax({
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      type: 'GET',
+      url: '/users',
+      dataType: 'JSON',
+      async: false,
+      success: function (data) {
+        if (!data) {
+          alert('Please log in first');
+          result = false;
+        } else if (data) {
+          result = true;
+        }
+      },
+      error: function (data) {
+        @if (config('app.env') == "local")
+          console.log('Request Status: ' + data.status + ' Status Text: ' + data.statusText + ' ' + data.responseText);
+          debugger;
+        @endif
+      },
+    });
+    return result;
+  }
+</script>
 @endsection

@@ -20,6 +20,10 @@ class Item extends Model {
     'discount',
   ];
 
+  public function brand() {
+    return $this->belongsTo(Brand::class);
+  }
+
   public static function searchItem($request) {
     $items = Item::query();
     if($request->search) $items->where('name','LIKE','%'.$request->search.'%');
