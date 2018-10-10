@@ -228,7 +228,7 @@
     $.ajax({
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       type: 'POST',
-      url: 'cart-items',
+      url: '/cart-items',
       data: {
         itemId: itemId
       },
@@ -266,7 +266,7 @@
     $.ajax({
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       type: 'GET',
-      url: 'users',
+      url: '/users',
       dataType: 'JSON',
       async: false,
       success: function (data) {
@@ -276,6 +276,12 @@
         } else if (data) {
           result = true;
         }
+      },
+      error: function (data) {
+        @if (config('app.env') == "local")
+          console.log('Request Status: ' + data.status + ' Status Text: ' + data.statusText + ' ' + data.responseText);
+          debugger;
+        @endif
       },
     });
     return result;
