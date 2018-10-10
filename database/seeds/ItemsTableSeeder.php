@@ -24,8 +24,8 @@ class ItemsTableSeeder extends Seeder{
       $item->description = "This is " . $item->name;
       $item->user_id = 1;
       $item->category_id = $clothingCategory->id;
-      $item->brand_id = rand(1, $brands[sizeof($brands)-1]->id);
-      $item->colour_id = rand(1, $colours[sizeof($colours)-1]->id);
+      $item->brand_id = $brands(rand(1, [sizeof($brands)-1])->id);
+      $item->colour_id = $colours(rand(1, [sizeof($colours)-1])->id);
       $primaryKey = $key + 1;
       $secondaryKey = $key + 2;
       if ($secondaryKey == 10) $secondaryKey = 1;
