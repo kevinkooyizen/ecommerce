@@ -173,7 +173,7 @@
                             <div class="hover-content">
                               <!-- Add to Cart -->
                               <div class="add-to-cart-btn">
-                                {{-- <a href="#" class="btn essence-btn" onclick="addToCart({{ $item->id }})">Add to Cart</a> --}}
+                                <a href="/items/{{ $item->id }}/edit" class="btn essence-btn" onclick="addToCart({{ $item->id }})">Edit Item</a>
                               </div>
                             </div>
                           </div>

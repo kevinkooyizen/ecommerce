@@ -45,4 +45,15 @@ class ItemsController extends Controller {
       return view('items.show', compact('item'));
     }
   }
+
+  public function edit(Request $request, $itemId) {
+    $item = Item::find($itemId);
+    return view('items.edit', compact('item'));
+  }
+
+  public function update(Request $request, $itemId) {
+    $item = Item::updateItem($request, $itemId);
+
+    return redirect("items/$item->id");
+  }
 }
