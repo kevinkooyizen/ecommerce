@@ -20,6 +20,10 @@ class Item extends Model {
     'discount',
   ];
 
+  public function user() {
+    return $this->belongsTo(User::class);
+  }
+
   public function brand() {
     return $this->belongsTo(Brand::class);
   }
@@ -45,7 +49,8 @@ class Item extends Model {
     if($request->sort == "expensive") $items->orderBy('price', 'DESC');
     if($request->sort == "cheap") $items->orderBy('price', 'ASC');
 
-    $items = $items->where('user_id', '!=', Auth::user()->id)->paginate(9);
+    // $items = $items->where('user_id', '!=', Auth::user()->id)->paginate(9);
+    $items = $items->paginate(9);
 
     return $items;
   }
