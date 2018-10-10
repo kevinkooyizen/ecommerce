@@ -30,6 +30,9 @@ class OrdersController extends Controller {
   }
 
   public function store(Request $request) {
+    if (!$request->selectedItem) {
+      return redirect()->back()->withError('No items selected. Please select at least one item to request.');
+    }
     foreach ($request->selectedItem as $cartItemId) {
       $order = new Order;
       $order->user_id = $request->user_id;
