@@ -25,7 +25,12 @@
                 <tbody>
                   @foreach ($cartItems as $cartItem)
                     <tr style="max-height: 200px;">
-                      <td><input type="checkbox" name="selectedItem[]" value="{{ $cartItem->id }}"></td>
+                      <td>
+                        <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input" id="customCheck{{ $cartItem->id }}" type="checkbox" name="selectedItem[]" value="{{ $cartItem->id }}">
+                          <label class="custom-control-label" for="customCheck{{ $cartItem->id }}"></label>
+                        </div>
+                      </td>
                       <td><img src="{{ $cartItem->item->primary_image }}"></td>
                       <td>{{ $cartItem->item->name }}</td>
                       <td>{{ $cartItem->item->price }}</td>
