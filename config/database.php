@@ -1,11 +1,11 @@
 <?php
 
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+// $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
+// $host = $url["host"];
+// $username = $url["user"];
+// $password = $url["pass"];
+// $database = substr($url["path"], 1);
 
 return [
 
@@ -46,17 +46,17 @@ return [
             'prefix' => '',
         ],
 
-        'mysql' => array(
-            'driver'    => 'mysql',
-            'host'      => $host,
-            'database'  => $database,
-            'username'  => $username,
-            'password'  => $password,
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-        ),
-        /* // Using ClearDB
+        // 'mysql' => array(
+        //     'driver'    => 'mysql',
+        //     'host'      => $host,
+        //     'database'  => $database,
+        //     'username'  => $username,
+        //     'password'  => $password,
+        //     'charset'   => 'utf8',
+        //     'collation' => 'utf8_unicode_ci',
+        //     'prefix'    => '',
+        // ),
+         // Using ClearDB
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'db4free.net'),
@@ -70,7 +70,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
-        ],*/
+        ],
 
         'pgsql' => [
             'driver' => 'pgsql',
