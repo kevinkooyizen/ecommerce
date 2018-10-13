@@ -7,7 +7,7 @@
                 <div class="single_widget_area d-flex mb-30">
                     <!-- Logo -->
                     <div class="footer-logo mr-50">
-                        <a href="#"><img src="/img/core-img/logo.png" alt="" style="max-width: 160px;"></a>
+                        <a href="#"><img src="/img/core-img/bravel-logo.png" alt="" style="max-width: 160px;"></a>
                     </div>
                     <!-- Footer Menu -->
                     <div class="footer_menu">

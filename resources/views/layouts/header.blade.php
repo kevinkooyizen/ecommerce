@@ -5,7 +5,7 @@
     <nav class="classy-navbar" id="essenceNav">
       <!-- Logo -->
       <a class="nav-brand" href="/" style="max-width: 160px;">
-        <img src="/img/core-img/logo.png" alt="">
+        <img src="/img/core-img/bravel-logo.png" alt="">
       </a>
       <!-- Navbar Toggler -->
       <div class="classy-navbar-toggler">
