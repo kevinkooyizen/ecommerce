@@ -1,5 +1,5 @@
 <!-- ##### Footer Area Start ##### -->
-<footer class="footer_area clearfix">
+<footer class="footer_area clearfix" style="background-color: white">
     <div class="container">
         <div class="row">
             <!-- Single Widget Area -->
@@ -7,12 +7,12 @@
                 <div class="single_widget_area d-flex mb-30">
                     <!-- Logo -->
                     <div class="footer-logo mr-50">
-                        <a href="#"><img src="/img/core-img/logo2.png" alt=""></a>
+                        <a href="#"><img src="/img/core-img/logo.png" alt="" style="max-width: 160px;"></a>
                     </div>
                     <!-- Footer Menu -->
                     <div class="footer_menu">
                         <ul>
-                            <li><a href="/shop">Shop</a></li>
+                            {{-- <li><a href="/shop" style="color: black">Shop</a></li> --}}
                             {{-- <li><a href="blog.html">Blog</a></li> --}}
                             {{-- <li><a href="/contact">Contact Us</a></li> --}}
                         </ul>
@@ -24,7 +24,7 @@
                 <div class="single_widget_area mb-30">
                     <ul class="footer_widget_menu">
                         @if (Auth::user())
-                            <li><a href="/carts/{{ $globalCart->id }}">My Cart</a></li>
+                            {{-- <li><a href="/carts/{{ $globalCart->id }}" style="color: black">My Cart</a></li> --}}
                         @endif
                     </ul>
                 </div>
@@ -62,4 +62,4 @@
 
     </div>
 </footer>
-<!-- ##### Footer Area End ##### -->
+<!-- ##### Footer Area End #####

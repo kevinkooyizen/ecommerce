@@ -4,7 +4,9 @@
     <!-- Classy Menu -->
     <nav class="classy-navbar" id="essenceNav">
       <!-- Logo -->
-      <a class="nav-brand" href="/"><img src="/img/core-img/logo.png" alt=""></a>
+      <a class="nav-brand" href="/" style="max-width: 160px;">
+        <img src="/img/core-img/logo.png" alt="">
+      </a>
       <!-- Navbar Toggler -->
       <div class="classy-navbar-toggler">
         <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -43,7 +45,7 @@
                         <li><a href="/shop">Trench</a></li>
                     </ul> --}}
                     <div class="single-mega cn-col-4">
-                        <img src="/img/bg-img/bg-6.jpg" alt="">
+                        <img src="/img/bg-img/hb-1.jpeg" alt="">
                     </div>
                 </div>
             </li>
