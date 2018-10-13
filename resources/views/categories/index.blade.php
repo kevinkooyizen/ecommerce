@@ -27,7 +27,7 @@
               <thead>
                 <tr>
                   <th width="20%">Name</th>
-                  <th width="80%"><button class="btn btn-info pull-right">New Category</button></th>
+                  <th width="80%"><button onclick="location.replace('/categories/create')" class="btn btn-info pull-right">New Category</button></th>
                 </tr>
               </thead>
               <tbody>

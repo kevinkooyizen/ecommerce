@@ -38,15 +38,15 @@
         </div>
       {{ Form::close() }}
       @if (!$category->parent_id)
-        @if (!$subCategories->isEmpty())
-          <table id="example" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-              <tr>
-                <th width="20%">Name</th>
-                <th width="80%"><button class="btn btn-info pull-right">New Sub Category</button></th>
-              </tr>
-            </thead>
-            <tbody>
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+          <thead>
+            <tr>
+              <th width="20%">Name</th>
+              <th width="80%"><button class="btn btn-info pull-right" onclick="location.replace('/categories/create?parent_id={{ $category->id }}')">New Sub Category</button></th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (!$subCategories->isEmpty())
               @foreach ($subCategories as $category)
                 <tr style="max-height: 200px;">
                   <td>{{ $category->name }}</td>
@@ -66,11 +66,16 @@
                   </td>
                 </tr>
               @endforeach
-            </tbody>
-          </table>
-        @else
-          No Sub Categories
-        @endif
+            @else
+              <tr>
+                <td></td>
+                <td>
+                  No Sub Categories
+                </td>
+              </tr>
+            @endif
+          </tbody>
+        </table>
       @endif
     </div>
   </div>

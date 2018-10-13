@@ -26,6 +26,7 @@
       </div>
 
       {!! Form::open(['url' => "categories", 'method' => "POST"]) !!}
+        <input type="hidden" name="parent_id" value="{{ $request->parent_id }}">
         <div class="row">
           <div class="col-12 mb-3">
             <label for="name">Name <span>*</span></label>

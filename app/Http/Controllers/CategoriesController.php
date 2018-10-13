@@ -21,14 +21,20 @@ class CategoriesController extends Controller {
 
   public function create(Request $request) {
 
-    return view('categories.create');
+    return view('categories.create', compact('request'));
   }
 
   public function store(Request $request) {
     $category = new Category;
     $category->name = $request->name;
+    if ($request->parent_id) $category->parent_id = $request->parent_id;
     $category->save();
-    return redirect('categories');
+
+    if ($request->parent_id) {
+      return redirect("categories/$request->parent_id/edit");
+    } elseif (!$request->parent_id) {
+      return redirect('categories');
+    }
   }
 
   public function edit(Request $request, $categoryId) {
@@ -51,9 +57,10 @@ class CategoriesController extends Controller {
 
     if ($request->parent_id) {
       return redirect("categories/$request->parent_id/edit");
+    } elseif ($request->parent_id) {
+      return redirect('categories');
     }
 
-    return redirect('categories');
   }
 
 }
