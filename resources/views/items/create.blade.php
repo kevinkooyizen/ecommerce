@@ -57,7 +57,7 @@
               </div>
               <div class="col-12 mb-3">
                 <label for="price">Price</label>
-                <input class="form-control" id="price" tabindex="-1" type="text" name="price" onkeypress="return isNumberKey(event)">
+                <input class="form-control" id="price" tabindex="-1" type="text" name="price" onkeypress="return isNumberKey(event)" required>
               </div>
             </div>
             <button class="btn essence-btn">Upload Item</button>
