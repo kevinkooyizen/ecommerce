@@ -7,7 +7,7 @@
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="page-title text-center">
-                    <h2>Edit Category</h2>
+                    <h2>Create Category</h2>
                 </div>
             </div>
         </div>
@@ -25,11 +25,11 @@
         <h5>Category Details</h5>
       </div>
 
-      {!! Form::open(['url' => "categories/$category->id", 'method' => "PUT"]) !!}
+      {!! Form::open(['url' => "categories", 'method' => "POST"]) !!}
         <div class="row">
           <div class="col-12 mb-3">
             <label for="name">Name <span>*</span></label>
-            <input type="text" class="form-control" id="name" name="name" required>
+            <input type="text" class="form-control" id="name" name="name" value="{{ $category->name }}" required>
           </div>
           <div class="col-12 mb-3">
             <button class="btn essence-btn">Update Category</button>

@@ -18,6 +18,18 @@ class CategoriesController extends Controller {
     return view('categories.index');
   }
 
+  public function create(Request $request) {
+
+    return view('categories.create');
+  }
+
+  public function store(Request $request) {
+    $category = new Category;
+    $category->name = $request->name;
+    $category->save();
+    return redirect('categories');
+  }
+
   public function edit(Request $request, $categoryId) {
     $category = Category::find($categoryId);
     return view('categories.edit', compact('category'));
