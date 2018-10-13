@@ -81,7 +81,7 @@
             </div>
           </div>
 
-          <!-- ##### Single Widget ##### -->
+          {{-- <!-- ##### Single Widget ##### -->
           <div class="widget color mb-50">
             <!-- Widget Title 2 -->
             <p class="widget-title2 mb-30">Colour</p>
@@ -95,7 +95,7 @@
                 @endforeach
               </ul>
             </div>
-          </div>
+          </div> --}}
 
           <!-- ##### Single Widget ##### -->
           <div class="widget brands mb-50">

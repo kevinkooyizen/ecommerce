@@ -20,6 +20,10 @@
                 <input type="text" class="form-control" id="name" value="" name="name" required>
               </div>
               <div class="col-12 mb-3">
+                <label for="name">Item Description <span>*</span></label>
+                <textarea class="form-control" id="description" value="" name="description" required></textarea>
+              </div>
+              <div class="col-12 mb-3">
                 <label for="category">Category <span>*</span></label>
                 <select class="w-100" id="category" name="category_id">
                   @foreach ($categories as $category)
@@ -35,14 +39,14 @@
                   @endforeach
                 </select>
               </div>
-              <div class="col-12 mb-3">
+              {{-- <div class="col-12 mb-3">
                 <label for="colour">Colour <span>*</span></label>
                 <select class="w-100" id="colour" name="colour_id">
                   @foreach ($colours as $colour)
                     <option value="{{ $colour->id }}">{{ $colour->name }}</option>
                   @endforeach
                 </select>
-              </div>
+              </div> --}}
               <div class="col-12 mb-3">
                 <label for="primary_image">Primary Image <span>*</span></label>
                 <input id="primary_image" tabindex="-1" type="file" name="primary_image">
