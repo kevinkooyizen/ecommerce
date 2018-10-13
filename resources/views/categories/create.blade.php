@@ -32,7 +32,7 @@
             <input type="text" class="form-control" id="name" name="name" value="" required>
           </div>
           <div class="col-12 mb-3">
-            <button class="btn essence-btn">Update Category</button>
+            <button class="btn essence-btn">Create Category</button>
           </div>
         </div>
       </form>
