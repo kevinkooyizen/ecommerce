@@ -39,9 +39,9 @@ class ViewComposerServiceProvider extends ServiceProvider {
   public function global(){
 
     view()->composer('*', function () {
-      $categories = Category::where('parent_id', 0)->get();
+      $categories = Category::where('parent_id', 0)->where('hide', false)->get();
       foreach ($categories as $category) {
-        $category->subcategories = Category::where('parent_id', $category->id)->get();
+        $category->subcategories = Category::where('parent_id', $category->id)->where('hide', false)->get();
       }
       View::share('categories', $categories);
 

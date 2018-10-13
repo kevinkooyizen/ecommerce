@@ -15,7 +15,8 @@ class CategoriesController extends Controller {
   }
 
   public function index(Request $request) {
-    return view('categories.index');
+    $categories = Category::where('parent_id', 0)->get();
+    return view('categories.index', compact('categories'));
   }
 
   public function create(Request $request) {
@@ -32,7 +33,9 @@ class CategoriesController extends Controller {
 
   public function edit(Request $request, $categoryId) {
     $category = Category::find($categoryId);
-    return view('categories.edit', compact('category'));
+    $subCategories = Category::where('parent_id', $categoryId)->get();
+
+    return view('categories.edit', compact('category', 'subCategories'));
   }
 
   public function update(Request $request, $categoryId) {
@@ -45,6 +48,10 @@ class CategoriesController extends Controller {
       $category->update($request->all());
     }
     $category->save();
+
+    if ($request->parent_id) {
+      return redirect("categories/$request->parent_id/edit");
+    }
 
     return redirect('categories');
   }
