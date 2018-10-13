@@ -49,7 +49,7 @@
               </div> --}}
               <div class="col-12 mb-3">
                 <label for="primary_image">Primary Image <span>*</span></label>
-                <input id="primary_image" tabindex="-1" type="file" name="primary_image">
+                <input id="primary_image" tabindex="-1" type="file" name="primary_image" required>
               </div>
               <div class="col-12 mb-3">
                 <label for="secondary_image">Secondary Image</label>
