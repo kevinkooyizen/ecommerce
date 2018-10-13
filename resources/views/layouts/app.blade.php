@@ -26,7 +26,7 @@
   <link rel="stylesheet" type="text/css" href="/css/nice-select.css">
   <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="/css/core-style.css">
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css?version={{ config('app.version') }}">
   <!--end::Base Styles -->
   
   <!-- Scripts -->
