@@ -8,7 +8,7 @@
             <div class="col-12">
                 <div class="hero-content">
                     {{-- <h6>asoss</h6> --}}
-                    <h2 style="color: white">Health & Beauty</h2>
+                    <h2 style="color: white">Health & <br>Beauty</h2>
                     <a href="/shop" class="btn essence-btn">All Products</a>
                 </div>
             </div>
