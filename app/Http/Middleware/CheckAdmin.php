@@ -15,7 +15,7 @@ class CheckAdmin{
    */
   public function handle($request, Closure $next){
     if (Auth::user()) {
-      if (!in_array(Auth::user()->id, explode(',', config('auth.admins')))){
+      if (!Auth::user()->admin){
         return redirect('/');
       }
     } else {
