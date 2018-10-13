@@ -44,7 +44,9 @@ class ViewComposerServiceProvider extends ServiceProvider {
         $category->subcategories = Category::where('parent_id', $category->id)->where('hide', false)->get();
       }
       View::share('categories', $categories);
-      
+      $subCategories = Category::where('parent_id', '!=', 0)->where('hide', false)->get();
+      View::share('subCategories', $subCategories);
+
       $brands = Brand::all();
       View::share('brands', $brands);
 
