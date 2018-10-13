@@ -15,3 +15,5 @@ function storeImage($document, $request){
   return $document;
 
 }
+
+?>
