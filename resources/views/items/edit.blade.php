@@ -58,14 +58,14 @@
               @endforeach
             </select>
           </div>
-          <div class="col-12 mb-3">
+          {{-- <div class="col-12 mb-3">
             <label for="colour">Colour <span>*</span></label>
             <select class="w-100" id="colour" name="colour_id">
               @foreach ($colours as $colour)
                 <option value="{{ $colour->id }}" {{ $item->colour_id == $colour->id?'selected':'' }}>{{ $colour->name }}</option>
               @endforeach
             </select>
-          </div>
+          </div> --}}
           <div class="col-12 mb-3">
             <label for="primary_image">Primary Image <span>*</span></label>
             <input id="primary_image" tabindex="-1" type="file" name="primary_image">
