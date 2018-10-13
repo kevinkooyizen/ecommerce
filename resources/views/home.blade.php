@@ -2,14 +2,14 @@
 
 @section('content')
 <!-- ##### Welcome Area Start ##### -->
-<section class="welcome_area bg-img background-overlay" style="background-image: url(img/bg-img/bg-1.jpg);">
+<section class="welcome_area bg-img background-overlay" style="background-image: url(img/bg-img/hb-2.jpeg);">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="hero-content">
-                    <h6>asoss</h6>
-                    <h2>New Collection</h2>
-                    <a href="/shop" class="btn essence-btn">View Collection</a>
+                    {{-- <h6>asoss</h6> --}}
+                    <h2 style="color: white">Health & Beauty</h2>
+                    <a href="/shop" class="btn essence-btn">All Products</a>
                 </div>
             </div>
         </div>
@@ -20,13 +20,16 @@
 <!-- ##### Top Catagory Area Start ##### -->
 <div class="top_catagory_area section-padding-80 clearfix">
     <div class="container">
+        <h3 style="color: #0315ff">Coming Soon</h3>
+        <br>
         <div class="row justify-content-center">
             <!-- Single Catagory -->
-            <div class="col-12 col-sm-6 col-md-4">
+            <div class="col-12 col-sm-6 col-md-4 watermark">
                 <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(img/bg-img/korea.jpg);">
                     <div class="catagory-content">
-                        <a href="#">Korea</a>
+                        <a href="#" style="">Korea</a>
                     </div>
+                    {{-- <p id="bg-text">Coming soon</p> --}}
                 </div>
             </div>
             <!-- Single Catagory -->
@@ -55,12 +58,12 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="cta-content bg-img background-overlay" style="background-image: url(img/bg-img/bg-5.jpg);">
+                <div class="cta-content bg-img background-overlay" style="background-image: url(img/bg-img/hb-3.jpeg);">
                     <div class="h-100 d-flex align-items-center justify-content-end">
                         <div class="cta--text">
-                            <h6>-60%</h6>
-                            <h2>Global Sale</h2>
-                            <a href="#" class="btn essence-btn">Buy Now</a>
+                            {{-- <h6>-60%</h6> --}}
+                            {{-- <h2>Global Sale</h2> --}}
+                            {{-- <a href="#" class="btn essence-btn">Buy Now</a> --}}
                         </div>
                     </div>
                 </div>
