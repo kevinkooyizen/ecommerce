@@ -60,7 +60,7 @@
               </ul>
             </li> --}}
             {{-- <li><a href="blog.html">Blog</a></li> --}}
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/contact">Contact Us</a></li>
           </ul>
         </div>
         <!-- Nav End -->
@@ -125,13 +125,25 @@
         @endif
       </div>
       @if (Auth::user())
+        @if (Auth::user()->admin)
+          <!-- Admin Options -->
+          <div class="user-login-info">
+            <a href="#" class="dropdown-toggle d-flex w-100" data-toggle="dropdown">
+              <div class="d-flex justify-content-center">
+                <span class="text-nowrap position-static margin-right-10 margin-left-10" style="color: black;">Admin <i class="fa fa-gears"></i></span>
+              </div>
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item line-height-20 text-left w-100" href="/categories">Categories</a>
+              <a class="dropdown-item line-height-20 text-left w-100" href="/colours">Colours</a>
+            </div>
+          </div>
+        @endif
         <!-- Cart Area -->
         <div class="cart-area">
-          {{-- <a href="#" id="essenceCartBtn"><img src="/img/core-img/bag.svg" alt=""> <span class="cart-item-count">{{ $globalCart->items->count() }}</span></a> --}}
           <a href="/carts/{{ $globalCart->id }}" class="d-flex w-100 margin-right-5">
             <div class="d-flex justify-content-center">
               <span class="text-nowrap position-static margin-right-10 margin-left-25">My Cart</span>
-              {{-- <img class="h-100 margin-right-25" src="/img/core-img/user.svg" alt="Login"> --}}
               <img src="/img/core-img/bag.svg" class="h-100 margin-right-25" alt=""> 
               <span class="cart-item-count" style="right: 10px;float: left;width: 20px;text-align: left;">{{ $globalCart->items->count() }}</span>
             </div>

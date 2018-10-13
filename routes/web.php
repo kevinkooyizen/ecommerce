@@ -28,6 +28,7 @@ Route::resource('admins', 'AdminController');
 // Super Admin Routes
 Route::get('admins', function () {return redirect('/');});
 Route::group(['middleware' => 'checkAdmin'],function (){
+  Route::resource('categories', 'CategoriesController');
   Route::resource('test', 'TestController');
 });
 
