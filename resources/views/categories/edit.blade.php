@@ -29,7 +29,7 @@
         <div class="row">
           <div class="col-12 mb-3">
             <label for="name">Name <span>*</span></label>
-            <input type="text" class="form-control" id="name" name="name" required>
+            <input type="text" class="form-control" id="name" name="name" value="{{ $category->name }}" required>
           </div>
           <div class="col-12 mb-3">
             <button class="btn essence-btn">Update Category</button>
