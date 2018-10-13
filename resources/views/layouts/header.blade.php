@@ -135,7 +135,7 @@
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item line-height-20 text-left w-100" href="/categories">Categories</a>
-              <a class="dropdown-item line-height-20 text-left w-100" href="/colours">Colours</a>
+              <a class="dropdown-item line-height-20 text-left w-100" href="/brands">Brands</a>
             </div>
           </div>
         @endif

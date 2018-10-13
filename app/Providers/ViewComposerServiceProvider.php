@@ -44,6 +44,9 @@ class ViewComposerServiceProvider extends ServiceProvider {
         $category->subcategories = Category::where('parent_id', $category->id)->where('hide', false)->get();
       }
       View::share('categories', $categories);
+      
+      $brands = Brand::all();
+      View::share('brands', $brands);
 
       if (Auth::user()) {
         $cart = Cart::getCurrentUsersCart();
@@ -59,13 +62,11 @@ class ViewComposerServiceProvider extends ServiceProvider {
     });
 
   }
-	
-	public function filters(){
+  
+  public function filters(){
 
     view()->composer('items*', function () {
-      $brands = Brand::all();
       $colours = Colour::all();
-      View::share('brands', $brands);
       View::share('colours', $colours);
     });
 
