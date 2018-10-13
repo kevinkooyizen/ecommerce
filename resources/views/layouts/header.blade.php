@@ -21,7 +21,7 @@
             <li><a href="/shop">Shop</a>
                 <div class="megamenu">
                     <ul class="single-mega cn-col-4">
-                        <li class="title">Women's Collection</li>
+                        {{-- <li class="title">Women's Collection</li> --}}
                         @foreach ($categories as $category)
                           <li><a href="/shop?category={{ $category->id }}">{{ $category->name }}</a></li>
                         @endforeach
@@ -60,7 +60,7 @@
               </ul>
             </li> --}}
             {{-- <li><a href="blog.html">Blog</a></li> --}}
-            <li><a href="/contact">Contact Us</a></li>
+            {{-- <li><a href="/contact">Contact Us</a></li> --}}
           </ul>
         </div>
         <!-- Nav End -->

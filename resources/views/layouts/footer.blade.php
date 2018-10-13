@@ -14,7 +14,7 @@
                         <ul>
                             <li><a href="/shop">Shop</a></li>
                             {{-- <li><a href="blog.html">Blog</a></li> --}}
-                            <li><a href="/contact">Contact Us</a></li>
+                            {{-- <li><a href="/contact">Contact Us</a></li> --}}
                         </ul>
                     </div>
                 </div>
