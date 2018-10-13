@@ -161,7 +161,7 @@
                           <!-- Product Description -->
                           <div class="product-description">
                             <span>{{ $item->brand->name }}</span>
-                            <a href="single-product-details.html">
+                            <a href="/items/{{ $item->id }}/edit">
                               <h6>{{ $item->name }}</h6>
                             </a>
                             <p class="product-price">
