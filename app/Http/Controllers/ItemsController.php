@@ -23,9 +23,9 @@ class ItemsController extends Controller {
   }
 
   public function create(Request $request) {
-    $items = new Item;
+    $subCategories = Category::where('parent_id', '!=', 0)->where('hide', false)->get();
 
-    return view('items.create', compact('item'));
+    return view('items.create', compact('subCategories'));
   }
 
   public function store(Request $request) {

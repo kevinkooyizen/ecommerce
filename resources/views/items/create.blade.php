@@ -26,7 +26,7 @@
               <div class="col-12 mb-3">
                 <label for="category">Category <span>*</span></label>
                 <select class="w-100" id="category" name="category_id">
-                  @foreach ($categories as $category)
+                  @foreach ($subCategories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                   @endforeach
                 </select>
