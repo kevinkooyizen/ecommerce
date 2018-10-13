@@ -11,5 +11,5 @@ npm-debug.log
 yarn-error.log
 .env
 sftp-config.json
-/vendor
+# /vendor
 app.yaml
