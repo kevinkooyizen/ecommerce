@@ -9,8 +9,9 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 
-class LoginController extends Controller
-{
+use Redirect;
+
+class LoginController extends Controller {
   /*
   |--------------------------------------------------------------------------
   | Login Controller
@@ -41,11 +42,13 @@ class LoginController extends Controller
   }
 
   public function authenticated(Request $request) {
-    return redirect($request->currentRoute);
+    // return redirect($request->currentRoute);
+    return redirect('/');
   }
 
   protected function loggedOut(Request $request) {
-    return redirect($request->currentRoute);
+    // return redirect($request->currentRoute);
+    return redirect('/');
   }
 
   // public function authenticate(Request $request){
