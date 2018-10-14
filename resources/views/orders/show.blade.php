@@ -82,6 +82,11 @@
       selectedOrders.push(checkedOrders[i].value);
     }
 
+    if (selectedOrders.length == 0) {
+      alert('Please select at least one order to pay for');
+      return false;
+    }
+
     selectedOrders = selectedOrders.toString();
 
     location.replace('/payments/create?selectedOrders=' + selectedOrders);
