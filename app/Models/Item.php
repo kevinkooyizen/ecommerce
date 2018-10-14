@@ -28,8 +28,8 @@ class Item extends Model {
     return $this->belongsTo(Brand::class);
   }
 
-  public static function searchItem($request) {
-    $items = Item::query();
+  public static function searchItem($request, $items = null) {
+    if (!$items) $items = Item::query();
     if($request->search) $items->where('name','LIKE','%'.$request->search.'%');
     if($request->brand) $items->where('brand_id',$request->brand);
     if($request->colour) $items->where('colour_id',$request->colour);
@@ -49,11 +49,7 @@ class Item extends Model {
     if($request->sort == "expensive") $items->orderBy('price', 'DESC');
     if($request->sort == "cheap") $items->orderBy('price', 'ASC');
 
-    if (Auth::user()) {
-      $items->where('user_id', '!=', Auth::user()->id);
-    }
-    $items = $items->paginate(9);
-
+    $items = $items->paginate(18);
     return $items;
   }
 
@@ -71,6 +67,15 @@ class Item extends Model {
     $item->update($request->all());
 
     return $item;
+  }
+
+  public static function searchOwnerItem($request) {
+    $items = Item::query();
+    $items->where('user_id', Auth::user()->id);
+
+    $items = self::searchItem($request, $items);
+
+    return $items;
   }
   
 }

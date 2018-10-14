@@ -36,7 +36,10 @@ class ItemsController extends Controller {
 
   public function show(Request $request, $variable) {
     if ($variable == "owner-shop") {
-      $items = Item::where('user_id', Auth::user()->id)->paginate(9);
+      $items = Item::searchOwnerItem($request);
+
+      $request->minPrice = $items->min('price');
+      $request->maxPrice = $items->max('price');
 
       return view('items.owner_shop', compact('items', 'request'));
     } else {
