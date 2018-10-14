@@ -88,7 +88,7 @@
                 </div>
                 <div class="col-12 mb-3">
                   <label for="expected_date">When you expect <span>*</span></label>
-                  <input class="form-control" id="expected_date" name="expected_date" required>
+                  <input class="form-control datepicker" data-provide="datepicker" id="expected_date" name="expected_date" required>
                 </div>
                 <div class="col-12 mb-3">
                   <label for="country">Country <span>*</span></label>

@@ -38,7 +38,7 @@ class OrderRequest extends Model {
     $orderRequest->country_id = $request->country_id;
     $orderRequest->area = $request->area;
     $orderRequest->quantity = $request->quantity;
-    $orderRequest->expected_date = $request->expected_date;
+    $orderRequest->expected_date = date("Y-m-d", strtotime($request->expected_date));
     $orderRequest->url = $request->url;
     $orderRequest->save();
 
