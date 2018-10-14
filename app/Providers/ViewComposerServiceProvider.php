@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Cart;
 use App\Models\Colour;
+use App\Models\Item;
 
 use Auth;
 use View;
@@ -21,6 +22,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
   public function boot(){
     $this->filters();
     $this->global();
+    $this->home();
   }
 
   /**
@@ -70,6 +72,15 @@ class ViewComposerServiceProvider extends ServiceProvider {
     view()->composer('items*', function () {
       $colours = Colour::all();
       View::share('colours', $colours);
+    });
+
+  }
+  
+  public function home(){
+
+    view()->composer('home', function () {
+      $firstSixItems = Item::orderBy('created_at', 'DESC')->limit(6)->get();
+      View::share('firstSixItems', $firstSixItems);
     });
 
 	}

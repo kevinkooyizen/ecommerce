@@ -79,151 +79,58 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-heading text-center">
-                    <h2>Popular Products</h2>
+                    <h2>All Products</h2>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="popular-products-slides owl-carousel">
+      <div class="row">
+        <div class="col-12">
+          <div class="popular-products-slides owl-carousel">
+            @foreach ($firstSixItems as $item)
+              <!-- Single Product -->
+              <div class="single-product-wrapper">
+                  <!-- Product Image -->
+                  <div class="product-img">
+                    <img src="{{ $item->primary_image }}" alt="">
+                    <!-- Hover Thumb -->
+                    <img class="hover-img" src="{{ $item->secondary_image }}" alt="">
 
-                    <!-- Single Product -->
-                    <div class="single-product-wrapper">
-                        <!-- Product Image -->
-                        <div class="product-img">
-                            <img src="img/product-img/product-1.jpg" alt="">
-                            <!-- Hover Thumb -->
-                            <img class="hover-img" src="img/product-img/product-2.jpg" alt="">
-                            <!-- Favourite -->
-                            <div class="product-favourite">
-                                <a href="#" class="favme fa fa-heart"></a>
-                            </div>
-                        </div>
-                        <!-- Product Description -->
-                        <div class="product-description">
-                            <span>topshop</span>
-                            <a href="single-product-details.html">
-                                <h6>Knot Front Mini Dress</h6>
-                            </a>
-                            <p class="product-price">$80.00</p>
+                    @if ($item->new)
+                      <div class="product-badge new-badge">
+                        <span>New</span>
+                      </div>
+                    @endif
+                  </div>
+                  <!-- Product Description -->
+                  <div class="product-description">
+                    <span>{{ $item->brand->name }}</span>
+                    <a href="/items/{{ $item->id }}">
+                      <h6>{{ $item->name }}</h6>
+                    </a>
+                    <p class="product-price">
+                      {{-- @if ($item->discount > 0)
+                        <span class="old-price">${{ $item->price }}</span>
+                      @endif --}}
+                      {{-- RM {{ $item->price - $item->discount/100 }} --}}
+                      RM {{ $item->price }}
+                    </p>
 
-                            <!-- Hover Content -->
-                            <div class="hover-content">
-                                <!-- Add to Cart -->
-                                <div class="add-to-cart-btn">
-                                    <a href="#" class="btn essence-btn">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Hover Content -->
+                    <div class="hover-content">
+                      <!-- Add to Cart -->
+                      <div class="add-to-cart-btn">
+                        <a href="#" class="btn essence-btn" onclick="addToCart({{ $item->id }})">Add to Cart</a>
+                      </div>
                     </div>
-
-                    <!-- Single Product -->
-                    <div class="single-product-wrapper">
-                        <!-- Product Image -->
-                        <div class="product-img">
-                            <img src="img/product-img/product-2.jpg" alt="">
-                            <!-- Hover Thumb -->
-                            <img class="hover-img" src="img/product-img/product-3.jpg" alt="">
-                            <!-- Favourite -->
-                            <div class="product-favourite">
-                                <a href="#" class="favme fa fa-heart"></a>
-                            </div>
-                        </div>
-                        <!-- Product Description -->
-                        <div class="product-description">
-                            <span>topshop</span>
-                            <a href="single-product-details.html">
-                                <h6>Poplin Displaced Wrap Dress</h6>
-                            </a>
-                            <p class="product-price">$80.00</p>
-
-                            <!-- Hover Content -->
-                            <div class="hover-content">
-                                <!-- Add to Cart -->
-                                <div class="add-to-cart-btn">
-                                    <a href="#" class="btn essence-btn">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Product -->
-                    <div class="single-product-wrapper">
-                        <!-- Product Image -->
-                        <div class="product-img">
-                            <img src="img/product-img/product-3.jpg" alt="">
-                            <!-- Hover Thumb -->
-                            <img class="hover-img" src="img/product-img/product-4.jpg" alt="">
-
-                            <!-- Product Badge -->
-                            <div class="product-badge offer-badge">
-                                <span>-30%</span>
-                            </div>
-
-                            <!-- Favourite -->
-                            <div class="product-favourite">
-                                <a href="#" class="favme fa fa-heart"></a>
-                            </div>
-                        </div>
-                        <!-- Product Description -->
-                        <div class="product-description">
-                            <span>mango</span>
-                            <a href="single-product-details.html">
-                                <h6>PETITE Crepe Wrap Mini Dress</h6>
-                            </a>
-                            <p class="product-price"><span class="old-price">$75.00</span> $55.00</p>
-
-                            <!-- Hover Content -->
-                            <div class="hover-content">
-                                <!-- Add to Cart -->
-                                <div class="add-to-cart-btn">
-                                    <a href="#" class="btn essence-btn">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Product -->
-                    <div class="single-product-wrapper">
-                        <!-- Product Image -->
-                        <div class="product-img">
-                            <img src="img/product-img/product-4.jpg" alt="">
-                            <!-- Hover Thumb -->
-                            <img class="hover-img" src="img/product-img/product-5.jpg" alt="">
-
-                            <!-- Product Badge -->
-                            <div class="product-badge new-badge">
-                                <span>New</span>
-                            </div>
-
-                            <!-- Favourite -->
-                            <div class="product-favourite">
-                                <a href="#" class="favme fa fa-heart"></a>
-                            </div>
-                        </div>
-                        <!-- Product Description -->
-                        <div class="product-description">
-                            <span>mango</span>
-                            <a href="single-product-details.html">
-                                <h6>PETITE Belted Jumper Dress</h6>
-                            </a>
-                            <p class="product-price">$80.00</p>
-
-                            <!-- Hover Content -->
-                            <div class="hover-content">
-                                <!-- Add to Cart -->
-                                <div class="add-to-cart-btn">
-                                    <a href="#" class="btn essence-btn">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                  </div>
+              </div>
+            @endforeach
+          </div>
         </div>
+      </div>
     </div>
 </section>
 <!-- ##### New Arrivals Area End ##### -->
@@ -256,4 +163,71 @@
     </div>
 </div>
 <!-- ##### Brands Area End ##### -->
+
+<script type="text/javascript">
+  function addToCart(itemId) {
+    status = checkLoggedIn();
+    if (status == "false") return false;
+    $.ajax({
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      type: 'POST',
+      url: '/cart-items',
+      data: {
+        itemId: itemId
+      },
+      dataType: 'JSON',
+      success: function (data) {
+        alert('Item Added');
+        $('.cart-list').append('\
+          <div class="single-cart-item" id="cart-item-' + data.id + '">\
+            <a href="#" class="product-image">\
+              <img src="' + data.addedItemProperties.primary_image + '" class="cart-thumb" alt="' + data.addedItemProperties.name + '">\
+              <div class="cart-item-desc">\
+                <span class="product-remove" onclick="removeFromCart(' + data.id + ')"><i class="fa fa-close" aria-hidden="true"></i></span>\
+                  <span class="badge">' + data.addedItemProperties.brand + '</span>\
+                  <h6>' + data.addedItemProperties.name + '</h6>\
+                  <p class="price">$' + data.addedItemProperties.price + '</p>\
+              </div>\
+            </a>\
+          </div>\
+        ');
+        $('#cart-subtotal')[0].innerHTML = "$" + data.subtotal;
+        $('#cart-total')[0].innerHTML = "$" + data.total;
+        $('.cart-item-count')[0].innerHTML = data.items.length;
+        $('.cart-item-count')[1].innerHTML = data.items.length;
+      },
+      error: function (data) {
+        @if (config('app.env') == "local")
+          console.log('Request Status: ' + data.status + ' Status Text: ' + data.statusText + ' ' + data.responseText);
+          debugger;
+        @endif
+      },
+    });
+  }
+
+  function checkLoggedIn() {
+    $.ajax({
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      type: 'GET',
+      url: '/users',
+      dataType: 'JSON',
+      async: false,
+      success: function (data) {
+        if (!data) {
+          alert('Please log in first');
+          result = false;
+        } else if (data) {
+          result = true;
+        }
+      },
+      error: function (data) {
+        @if (config('app.env') == "local")
+          console.log('Request Status: ' + data.status + ' Status Text: ' + data.statusText + ' ' + data.responseText);
+          debugger;
+        @endif
+      },
+    });
+    return result;
+  }
+</script>
 @endsection
