@@ -36,7 +36,7 @@ class OrdersController extends Controller {
     foreach ($request->selectedItem as $cartItemId) {
       $order = new Order;
       $order->user_id = $request->user_id;
-      $order->item_id = $cartItemId;
+      $order->item_id = $cartItemId->item->id;
       $order->status_id = Status::getStatus('Pending')->id;
       $order->save();
 
