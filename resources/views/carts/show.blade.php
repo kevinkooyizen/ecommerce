@@ -27,7 +27,7 @@
                     <tr style="max-height: 200px;">
                       <td>
                         <div class="custom-control custom-checkbox">
-                          <input class="custom-control-input" id="customCheck{{ $cartItem->id }}" type="checkbox" name="selectedItem[]" value="{{ $cartItem->id }}">
+                          <input class="custom-control-input" id="customCheck{{ $cartItem->id }}" type="checkbox" name="selectedItem[]" value="{{ $cartItem->item->id }}">
                           <label class="custom-control-label" for="customCheck{{ $cartItem->id }}"></label>
                         </div>
                       </td>
