@@ -120,6 +120,12 @@
             <a class="dropdown-item line-height-20 text-left w-100" href="/orders/purchase-requests">Purchase Orders</a>
             <a class="dropdown-item line-height-20 text-left w-100" href="/orders/sale-requests">Sales Orders</a>
             <a class="dropdown-item line-height-20 text-left w-100" href="#" onclick="$('#logoutForm').submit();">Logout</a>
+            <span>&nbsp;</span>
+            <strong class="dropdown-item font-bold">Admin Menu</strong>
+            @if (Auth::user()->admin)
+              <a class="dropdown-item line-height-20 text-left w-100" href="/categories">Categories</a>
+              <a class="dropdown-item line-height-20 text-left w-100" href="/brands">Brands</a>
+            @endif
             {!! Form::open(['url' => '/logout', 'method' => 'POST', 'id' => 'logoutForm']) !!}
               <input type="hidden" name="currentRoute" value="{{ Route::getFacadeRoot()->current()->uri() }}">
             {{ Form::close() }}
@@ -127,20 +133,6 @@
         @endif
       </div>
       @if (Auth::user())
-        @if (Auth::user()->admin)
-          <!-- Admin Options -->
-          <div class="user-login-info">
-            <a href="#" class="dropdown-toggle d-flex w-100" data-toggle="dropdown">
-              <div class="d-flex justify-content-center">
-                <span class="text-nowrap position-static margin-right-10 margin-left-10" style="color: black;">Admin <i class="fa fa-gears"></i></span>
-              </div>
-            </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item line-height-20 text-left w-100" href="/categories">Categories</a>
-              <a class="dropdown-item line-height-20 text-left w-100" href="/brands">Brands</a>
-            </div>
-          </div>
-        @endif
         <!-- Cart Area -->
         <div class="cart-area">
           <a href="/carts/{{ $globalCart->id }}" class="d-flex w-100 margin-right-5">
