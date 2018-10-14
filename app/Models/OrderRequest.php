@@ -10,8 +10,16 @@ class OrderRequest extends Model {
 
   protected $guarded = ['id'];
 
+  protected $dates = [
+    'expected_date',
+  ];
+
   public function item() {
     return $this->hasOne(Item::class);
+  }
+
+  public function country() {
+    return $this->belongsTo(Country::class);
   }
 
   public static function getCurrentUserOrderRequests($request) {

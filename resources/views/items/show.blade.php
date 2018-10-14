@@ -13,15 +13,34 @@
   <div class="single_product_desc clearfix">
     <span>{{ $item->brand->name }}</span>
     <h2>{{ $item->name }}</h2>
-    <p class="product-price">RM {{ $item->price }}</p>
+    <p class="product-price">
+      @if ($item->order_request)
+        Item Price + tips for traveller:
+        <br>
+      @endif
+       RM {{ $item->price }}
+    </p>
     <p class="product-desc">{{ $item->description }}</p>
+    @if ($item->order_request)
+      <p class="product-desc">Country: {{ $item->order_request->country->name }}</p>
+      @if ($item->order_request->area)
+        <p class="product-desc">Where to buy (Shop/Area): {{ $item->order_request->area }}</p>
+      @endif
+      <p class="product-desc">Quantity: {{ $item->order_request->quantity }}</p>
+      <p class="product-desc">Expected On: {{ date("j M Y", strtotime($item->order_request->expected_date)) }}</p>
+      @if ($item->order_request->url)
+        <p class="product-desc">{{ $item->order_request->url }}</p>
+      @endif
+    @endif
 
     <!-- Form -->
     <form class="cart-form clearfix" action="#">
       <!-- Cart & Favourite Box -->
       <div class="cart-fav-box d-flex align-items-center">
         <!-- Cart -->
-        <button type="button" class="btn essence-btn" onclick="addToCart('{{ $item->id }}')">Add to cart</button>
+        @if (!$item->order_request)
+          <button type="button" class="btn essence-btn" onclick="addToCart('{{ $item->id }}')">Add to cart</button>
+        @endif
         <!-- Favourite -->
         <div class="product-favourite ml-4">
           {{-- <a href="#" class="favme fa fa-heart"></a> --}}

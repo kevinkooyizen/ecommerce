@@ -28,6 +28,10 @@ class Item extends Model {
     return $this->belongsTo(Brand::class);
   }
 
+  public function order_request() {
+    return $this->belongsTo(OrderRequest::class);
+  }
+
   public static function searchItem($request, $items = null) {
     if (!$items) $items = Item::query();
     if($request->search) $items->where('name','LIKE','%'.$request->search.'%');

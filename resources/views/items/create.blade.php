@@ -49,7 +49,7 @@
               </div>
               @if ($request->order_request)
                 <div class="col-12 mb-3">
-                  <label for="area">Where to buy (shop/area)</label>
+                  <label for="area">Where to buy (Shop/Area)</label>
                   <textarea class="form-control" id="area" value="" name="area" placeholder="Please provide Shopname, Area or Street Name (Optional)"></textarea>
                 </div>
               @endif
