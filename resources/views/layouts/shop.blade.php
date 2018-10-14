@@ -101,7 +101,7 @@
             <div class="widget-desc">
               <ul>
                 @foreach ($brands as $brand)
-                  <li><a href="#" onclick="fillValue('brand', '{{ $brand->id }}')">{{ $brand->name }}</a></li>
+                  <li><a href="#" onclick="fillValue('brand', '{{ $brand->id }}')" style="text-transform: none">{{ $brand->name }}</a></li>
                 @endforeach
               </ul>
             </div>
@@ -173,7 +173,7 @@
 
                           <!-- Product Description -->
                           <div class="product-description">
-                            <span>{{ $item->brand->name }}</span>
+                            <span style="text-transform: none">{{ $item->brand->name }}</span>
                             <a href="/items/{{ $item->id }}">
                               <h6>{{ $item->name }}</h6>
                             </a>

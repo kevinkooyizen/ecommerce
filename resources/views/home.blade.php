@@ -106,7 +106,7 @@
                 </div>
                 <!-- Product Description -->
                 <div class="product-description">
-                  <span>{{ $item->brand->name }}</span>
+                  <span style="text-transform: none">{{ $item->brand->name }}</span>
                   <a href="/items/{{ $item->id }}">
                     <h6>{{ $item->name }}</h6>
                   </a>
