@@ -138,7 +138,7 @@
       <div class="col-6">
         <div class="section-heading">
           <i class="fa fa-lightbulb-o"></i> <strong>Have something else in mind?</strong>
-          <button type="button" onclick="location.replace('/items/create?order_request=true')" class="btn btn-info pull-right">Make a new request</button>
+          <button type="button" onclick="makeNewRequest()" class="btn btn-info pull-right">Make a new request</button>
         </div>
       </div>
     </div>
@@ -176,6 +176,13 @@
 <!-- ##### Brands Area End ##### -->
 
 <script type="text/javascript">
+  function makeNewRequest() {
+    status = checkLoggedIn();
+    if (status == "false") return false;
+    
+    location.replace('/items/create?order_request=true')
+  }
+  
   function addToCart(itemId) {
     status = checkLoggedIn();
     if (status == "false") return false;
