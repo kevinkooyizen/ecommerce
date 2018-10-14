@@ -12,11 +12,8 @@
             <h5>Upload a New Item</h5>
           </div>
 
-          {!! Form::open(['url' => 'items', 'method' => 'POST', 'files' => true]) !!}
-            <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
-            @if ($request->order_request)
-              <input type="hidden" value="true" name="order_request">
-            @endif
+          {!! Form::open(['url' => '/order-requests', 'method' => 'POST', 'files' => true]) !!}
+            <input type="hidden" value="{{ Auth::user()->id }}" name="user_id" required>
             <div class="row">
               <div class="col-12 mb-3">
                 <label for="name">Item Name <span>*</span></label>

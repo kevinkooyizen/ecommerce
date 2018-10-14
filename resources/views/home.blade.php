@@ -75,92 +75,103 @@
 
 <!-- ##### New Arrivals Area Start ##### -->
 <section class="new_arrivals_area section-padding-80 clearfix">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-heading text-center">
-                    <h2>All Products</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="popular-products-slides owl-carousel">
-            @foreach ($firstSixItems as $item)
-              <!-- Single Product -->
-              <div class="single-product-wrapper">
-                  <!-- Product Image -->
-                  <div class="product-img" style="height: 300px;">
-                    <img src="{{ $item->primary_image }}" alt="" style="height: 100%">
-                    <!-- Hover Thumb -->
-                    <img class="hover-img" src="{{ $item->secondary_image }}" alt="" style="height: 100%">
-
-                    @if ($item->new)
-                      <div class="product-badge new-badge">
-                        <span>New</span>
-                      </div>
-                    @endif
-                  </div>
-                  <!-- Product Description -->
-                  <div class="product-description">
-                    <span>{{ $item->brand->name }}</span>
-                    <a href="/items/{{ $item->id }}">
-                      <h6>{{ $item->name }}</h6>
-                    </a>
-                    <p class="product-price">
-                      {{-- @if ($item->discount > 0)
-                        <span class="old-price">${{ $item->price }}</span>
-                      @endif --}}
-                      {{-- RM {{ $item->price - $item->discount/100 }} --}}
-                      RM {{ $item->price }}
-                    </p>
-
-                    <!-- Hover Content -->
-                    <div class="hover-content">
-                      <!-- Add to Cart -->
-                      <div class="add-to-cart-btn">
-                        <a href="#" class="btn essence-btn" onclick="addToCart({{ $item->id }})">Add to Cart</a>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            @endforeach
-          </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-heading text-center">
+          <h2>All Products</h2>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="popular-products-slides owl-carousel">
+          @foreach ($firstSixItems as $item)
+            <!-- Single Product -->
+            <div class="single-product-wrapper">
+                <!-- Product Image -->
+                <div class="product-img" style="height: 300px;">
+                  <img src="{{ $item->primary_image }}" alt="" style="height: 100%">
+                  <!-- Hover Thumb -->
+                  <img class="hover-img" src="{{ $item->secondary_image }}" alt="" style="height: 100%">
+
+                  @if ($item->new)
+                    <div class="product-badge new-badge">
+                      <span>New</span>
+                    </div>
+                  @endif
+                </div>
+                <!-- Product Description -->
+                <div class="product-description">
+                  <span>{{ $item->brand->name }}</span>
+                  <a href="/items/{{ $item->id }}">
+                    <h6>{{ $item->name }}</h6>
+                  </a>
+                  <p class="product-price">
+                    {{-- @if ($item->discount > 0)
+                      <span class="old-price">${{ $item->price }}</span>
+                    @endif --}}
+                    {{-- RM {{ $item->price - $item->discount/100 }} --}}
+                    RM {{ $item->price }}
+                  </p>
+
+                  <!-- Hover Content -->
+                  <div class="hover-content">
+                    <!-- Add to Cart -->
+                    <div class="add-to-cart-btn">
+                      <a href="#" class="btn essence-btn" onclick="addToCart({{ $item->id }})">Add to Cart</a>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          @endforeach
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <div class="section-heading">
+          <i class="fa fa-lightbulb-o"></i> <strong>Have something else in mind?</strong>
+          <button type="button" onclick="location.replace('/items/create?order_request=true')" class="btn btn-info pull-right">Make a new request</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- ##### New Arrivals Area End ##### -->
 
 <!-- ##### Brands Area Start ##### -->
 <div class="brands-area d-flex align-items-center justify-content-between">
-    <!-- Brand Logo -->
-    <div class="single-brands-logo">
-        <img src="img/core-img/b.liv.jpeg" alt="" style="max-width: 250px;">
-    </div>
-    <!-- Brand Logo -->
-    <div class="single-brands-logo">
-        <img src="img/core-img/Hada Labo.jpeg" alt="" style="max-width: 250px;">
-    </div>
-    <!-- Brand Logo -->
-    <div class="single-brands-logo">
-        <img src="img/core-img/Loreal.jpeg" alt="" style="max-width: 250px;">
-    </div>
-    <!-- Brand Logo -->
-    <div class="single-brands-logo">
-        <img src="img/core-img/Maybelline.jpeg" alt="" style="max-width: 250px;">
-    </div>
-    <!-- Brand Logo -->
-    <div class="single-brands-logo">
-        <img src="img/core-img/NYX.jpeg" alt="" style="max-width: 250px;">
-    </div>
-    <!-- Brand Logo -->
-    <div class="single-brands-logo">
-        <img src="img/core-img/Pantene.jpeg" alt="" style="max-width: 250px;">
-    </div>
+  <!-- Brand Logo -->
+  <div class="single-brands-logo">
+    <img src="img/core-img/b.liv.jpeg" alt="" style="max-width: 250px;">
+  </div>
+  <!-- Brand Logo -->
+  <div class="single-brands-logo">
+    <img src="img/core-img/Hada Labo.jpeg" alt="" style="max-width: 250px;">
+  </div>
+  <!-- Brand Logo -->
+  <div class="single-brands-logo">
+    <img src="img/core-img/Loreal.jpeg" alt="" style="max-width: 250px;">
+  </div>
+  <!-- Brand Logo -->
+  <div class="single-brands-logo">
+    <img src="img/core-img/Maybelline.jpeg" alt="" style="max-width: 250px;">
+  </div>
+  <!-- Brand Logo -->
+  <div class="single-brands-logo">
+    <img src="img/core-img/NYX.jpeg" alt="" style="max-width: 250px;">
+  </div>
+  <!-- Brand Logo -->
+  <div class="single-brands-logo">
+    <img src="img/core-img/Pantene.jpeg" alt="" style="max-width: 250px;">
+  </div>
 </div>
 <!-- ##### Brands Area End ##### -->
 

@@ -14,7 +14,8 @@ use Illuminate\Http\Request;
 
 class ItemsController extends Controller {
   public function index(Request $request) {
-    $items = Item::searchItem($request);
+
+    $items = Item::shopitems($request);
 
     $request->minPrice = $items->min('price');
     $request->maxPrice = $items->max('price');
@@ -25,7 +26,7 @@ class ItemsController extends Controller {
   public function create(Request $request) {
     $subCategories = Category::where('parent_id', '!=', 0)->where('hide', false)->get();
 
-    return view('items.create', compact('subCategories'));
+    return view('items.create', compact('subCategories', 'request'));
   }
 
   public function store(Request $request) {

@@ -12,6 +12,7 @@ Route::get('users', 'UsersController@show');
 // Shopping Routes
 Route::get('shop', 'ItemsController@index');
 Route::post('newsletters', 'NewslettersController@store');
+Route::resource('order-requests', 'OrderRequestsController');
 Route::resource('items', 'ItemsController');
 Route::resource('orders', 'OrdersController');
 Route::resource('cart-items', 'CartItemsController');

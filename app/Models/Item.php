@@ -56,6 +56,11 @@ class Item extends Model {
   public static function storeItem($request) {
     $item = Item::create($request->all());
     $item = storeImage($item, $request);
+
+    if ($request->order_request) {
+      $orderRequest = OrderRequest::storeOrderRequest();
+      $item->order_request_id = $orderRequest->id;
+    }
     $item->save();
 
     return $item;
@@ -72,6 +77,15 @@ class Item extends Model {
   public static function searchOwnerItem($request) {
     $items = Item::query();
     $items->where('user_id', Auth::user()->id);
+
+    $items = self::searchItem($request, $items);
+
+    return $items;
+  }
+
+  public static function shopItems($request) {
+    $items = Item::query();
+    $items->where('order_request_id', 0);
 
     $items = self::searchItem($request, $items);
 

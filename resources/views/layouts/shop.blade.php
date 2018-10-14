@@ -6,6 +6,8 @@
         {!! Form::open(['url' => 'shop', 'method' => 'GET', 'id' => 'search-form']) !!}
       @elseif ($request->path() == "items/owner-shop")
         {!! Form::open(['url' => '/items/owner-shop', 'method' => 'GET', 'id' => 'search-form']) !!}
+      @elseif ($request->path() == "order-requests")
+        {!! Form::open(['url' => '/order-requests', 'method' => 'GET', 'id' => 'search-form']) !!}
       @endif
         <input type="hidden" name="brand" value="{{ $request->brand }}">
         <input type="hidden" name="category" value="{{ $request->category }}">
