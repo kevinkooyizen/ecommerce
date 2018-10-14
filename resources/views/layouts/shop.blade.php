@@ -214,6 +214,10 @@
   function fillValue(key, value, key2, value2) {
     if (key2)$('[name=' + key2 + ']').val(value2);
     $('[name=' + key + ']').val(value);
+    if (key != 'minPrice') {
+      $('[name=minPrice]').val('');
+      $('[name=maxPrice]').val('');
+    }
     $('#search-form').submit();
   }
 
