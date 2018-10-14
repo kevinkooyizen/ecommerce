@@ -24,6 +24,12 @@
             <!-- Widget Title -->
             @if ($request->path() == "items/owner-shop")
               <button class="btn btn-primary" onclick="location.replace('/items/create')">Add Item</button>
+              <br>
+              <br>
+            @elseif ($request->path() == "order-requests")
+              <button class="btn btn-info" onclick="location.replace('/items/create?order_request=true')">Make a new request</button>
+              <br>
+              <br>
             @endif
             <h6 class="widget-title mb-30">Categories</h6>
 
@@ -132,7 +138,11 @@
                       <div class="single-product-wrapper">
                           <!-- Product Image -->
                           <div class="product-img" style="height: 300px;">
-                            <a href="/items/{{ $item->id }}">
+                            @if ($request->path() != "order-requests")
+                              <a href="/items/{{ $item->id }}">
+                            @elseif ($request->path() == "order-requests")
+                              <a href="/order-requests/{{ $item->id }}">
+                            @endif
                               <img src="{{ $item->primary_image }}" alt="" style="height: 100%">
                               <!-- Hover Thumb -->
                               <img class="hover-img" src="{{ $item->secondary_image }}" alt="" style="height: 100%">
@@ -178,9 +188,11 @@
                             <!-- Hover Content -->
                             <div class="hover-content">
                               <!-- Add to Cart -->
-                              <div class="add-to-cart-btn">
-                                <a href="#" class="btn essence-btn" onclick="addToCart({{ $item->id }})">Add to Cart</a>
-                              </div>
+                              @if ($request->path() != "order-requests")
+                                <div class="add-to-cart-btn">
+                                  <a href="#" class="btn essence-btn" onclick="addToCart({{ $item->id }})">Add to Cart</a>
+                                </div>
+                              @endif
                             </div>
                           </div>
                       </div>

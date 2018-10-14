@@ -17,6 +17,11 @@ class CreateOrderRequestsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('status_id');
+            $table->integer('country_id');
+            $table->longText('area')->nullable();
+            $table->integer('quantity')->default(0);
+            $table->date('expected_date');
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

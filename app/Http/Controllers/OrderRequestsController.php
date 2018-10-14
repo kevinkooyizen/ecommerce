@@ -21,4 +21,10 @@ class OrderRequestsController extends Controller {
     return view('orders.index', compact('items', 'request'));
   }
 
+  public function show(Request $request, $orderId) {
+    $order = OrderRequest::find($orderId);
+
+    return redirect("items/{$order->item->id}");
+  }
+
 }

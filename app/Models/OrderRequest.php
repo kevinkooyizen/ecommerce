@@ -8,12 +8,10 @@ use Auth;
 
 class OrderRequest extends Model {
 
+  protected $guarded = ['id'];
+
   public function item() {
     return $this->hasOne(Item::class);
-  }
-
-  public function status() {
-    return $this->belongsTo(Status::class);
   }
 
   public static function getCurrentUserOrderRequests($request) {
@@ -23,6 +21,20 @@ class OrderRequest extends Model {
     $items = Item::searchItem($request, $items);
 
     return $items;
+  }
+
+  public static function storeOrderRequest($request) {
+    $orderRequest = new OrderRequest();
+    $orderRequest->user_id = Auth::user()->id;
+    $orderRequest->status_id = Status::getStatus('New')->id;
+    $orderRequest->country_id = $request->country_id;
+    $orderRequest->area = $request->area;
+    $orderRequest->quantity = $request->quantity;
+    $orderRequest->expected_date = $request->expected_date;
+    $orderRequest->url = $request->url;
+    $orderRequest->save();
+
+    return $orderRequest;
   }
 
 }

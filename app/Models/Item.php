@@ -58,7 +58,7 @@ class Item extends Model {
     $item = storeImage($item, $request);
 
     if ($request->order_request) {
-      $orderRequest = OrderRequest::storeOrderRequest();
+      $orderRequest = OrderRequest::storeOrderRequest($request);
       $item->order_request_id = $orderRequest->id;
     }
     $item->save();

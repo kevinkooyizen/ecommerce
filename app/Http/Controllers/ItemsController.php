@@ -32,7 +32,11 @@ class ItemsController extends Controller {
   public function store(Request $request) {
     $item = Item::storeItem($request);
 
-    return redirect("items/$item->id");
+    if ($request->order_request) {
+      return redirect("order-requests");
+    } elseif (!$request->order_request) {
+      return redirect("items/$item->id");
+    }
   }
 
   public function show(Request $request, $variable) {
