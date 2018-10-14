@@ -75,6 +75,16 @@ class Item extends Model {
     $item = storeImage($item, $request);
     $item->update($request->all());
 
+    if ($item->order_request) {
+      $orderRequest = $item->order_request;
+      $orderRequest->country_id = $request->country_id;
+      $orderRequest->area = $request->area;
+      $orderRequest->quantity = $request->quantity;
+      $orderRequest->expected_date = $request->expected_date;
+      $orderRequest->url = $request->url;
+      $orderRequest->save();
+    }
+
     return $item;
   }
 

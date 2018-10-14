@@ -40,6 +40,8 @@
         <!-- Cart -->
         @if (!$item->order_request)
           <button type="button" class="btn essence-btn" onclick="addToCart('{{ $item->id }}')">Add to cart</button>
+        @elseif ($item->order_request)
+          <button type="button" class="btn essence-btn" onclick="location.replace('/items/{{ $item->id }}/edit')">Edit Order Request</button>
         @endif
         <!-- Favourite -->
         <div class="product-favourite ml-4">

@@ -45,12 +45,12 @@
               </div>
               <div class="col-12 mb-3">
                 <label for="description">Item Description <span>*</span></label>
-                <textarea class="form-control" id="description" value="" name="description" placeholder="{{ $request->order_request?"Describe your item e.g. size, quantity, colour, packaging, how to buy?":"Item Description" }}" required></textarea>
+                <textarea class="form-control height-100" id="description" value="" name="description" placeholder="{{ $request->order_request?"Describe your item e.g. size, quantity, colour, packaging, how to buy?":"Item Description" }}" required></textarea>
               </div>
               @if ($request->order_request)
                 <div class="col-12 mb-3">
                   <label for="area">Where to buy (Shop/Area)</label>
-                  <textarea class="form-control" id="area" value="" name="area" placeholder="Please provide Shopname, Area or Street Name (Optional)"></textarea>
+                  <textarea class="form-control height-100" id="area" value="" name="area" placeholder="Please provide Shopname, Area or Street Name (Optional)"></textarea>
                 </div>
               @endif
               <div class="col-12 mb-3">
@@ -102,8 +102,7 @@
                   <label for="url">URL</label>
                   <input class="form-control" id="url" name="url">
                 </div>
-              @endif
-              @if (!$request->order_request)
+              @elseif (!$request->order_request)
                 <div class="col-12 mb-3">
                   <label for="secondary_image">Secondary Image</label>
                   <input id="secondary_image" tabindex="-1" type="file" name="secondary_image">
