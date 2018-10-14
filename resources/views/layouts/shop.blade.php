@@ -129,11 +129,11 @@
                   <div class="col-12 col-sm-6 col-lg-4">
                       <div class="single-product-wrapper">
                           <!-- Product Image -->
-                          <div class="product-img">
+                          <div class="product-img" style="height: 300px;">
                             <a href="/items/{{ $item->id }}">
-                              <img src="{{ $item->primary_image }}" alt="">
+                              <img src="{{ $item->primary_image }}" alt="" style="height: 100%">
                               <!-- Hover Thumb -->
-                              <img class="hover-img" src="{{ $item->secondary_image }}" alt="">
+                              <img class="hover-img" src="{{ $item->secondary_image }}" alt="" style="height: 100%">
                             </a>
 
                             <!-- Product Badge -->

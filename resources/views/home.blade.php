@@ -93,10 +93,10 @@
               <!-- Single Product -->
               <div class="single-product-wrapper">
                   <!-- Product Image -->
-                  <div class="product-img">
-                    <img src="{{ $item->primary_image }}" alt="">
+                  <div class="product-img" style="height: 300px;">
+                    <img src="{{ $item->primary_image }}" alt="" style="height: 100%">
                     <!-- Hover Thumb -->
-                    <img class="hover-img" src="{{ $item->secondary_image }}" alt="">
+                    <img class="hover-img" src="{{ $item->secondary_image }}" alt="" style="height: 100%">
 
                     @if ($item->new)
                       <div class="product-badge new-badge">
