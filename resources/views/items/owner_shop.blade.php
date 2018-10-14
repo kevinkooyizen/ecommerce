@@ -117,14 +117,14 @@
                             <p><span>{{ $items->count() }}</span> products found</p>
                           </div>
                           <!-- Sorting -->
-                          <div class="product-sorting d-flex">
+                          {{-- <div class="product-sorting d-flex">
                             <p>Sort by:</p>
                             <select name="select" id="sortByselect" onchange="fillValue('sort', $('#sortByselect').val())">
                               <option value="latest" onselect="fillValue('sort', 'latest')">Newest</option>
-                              <option value="expensive" {{ $request->sort == "expensive"?'selected="selected"':''}}>Price: $$ - $</option>
-                              <option value="cheap" {{ $request->sort == "cheap"?'selected="selected"':''}}>Price: $ - $$</option>
+                              <option value="expensive" {{ $request->sort == "expensive"?'selected="selected"':''}}>Price: High -> Low</option>
+                              <option value="cheap" {{ $request->sort == "cheap"?'selected="selected"':''}}>Price: Low -> High</option>
                             </select>
-                          </div>
+                          </div> --}}
                       </div>
                   </div>
               </div>
@@ -142,11 +142,16 @@
                             </a>
 
                             <!-- Product Badge -->
-                            @if ($item->discount > 0)
+                            {{-- @if ($item->discount > 0)
                               <div class="product-badge offer-badge">
                                 <span>-{{ floatval($item->discount) }}%</span>
                               </div>
                             @elseif ($item->new)
+                              <div class="product-badge new-badge">
+                                <span>New</span>
+                              </div>
+                            @endif --}}
+                            @if ($item->new)
                               <div class="product-badge new-badge">
                                 <span>New</span>
                               </div>
@@ -165,10 +170,11 @@
                               <h6>{{ $item->name }}</h6>
                             </a>
                             <p class="product-price">
-                              @if ($item->discount > 0)
+                              {{-- @if ($item->discount > 0)
                                 <span class="old-price">${{ $item->price }}</span>
-                              @endif
-                               ${{ $item->price - $item->discount/100 }}
+                              @endif --}}
+                              {{-- RM {{ $item->price - $item->discount/100 }} --}}
+                              RM {{ $item->price }}
                             </p>
 
                             <!-- Hover Content -->
