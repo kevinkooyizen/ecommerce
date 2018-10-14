@@ -89,10 +89,9 @@
           <!-- ##### Single Widget ##### -->
           <div class="widget brands mb-50">
             <!-- Widget Title 2 -->
-            <p class="widget-title2 mb-30">Brands</p>
+            <a href="#" onclick="fillValue('brand', '')"><p class="widget-title2 mb-30">All Brands</p></a>
             <div class="widget-desc">
               <ul>
-                <li><a href="#" onclick="fillValue('brand', '')">All Brands</a></li>
                 @foreach ($brands as $brand)
                   <li><a href="#" onclick="fillValue('brand', '{{ $brand->id }}')">{{ $brand->name }}</a></li>
                 @endforeach
