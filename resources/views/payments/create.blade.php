@@ -17,14 +17,14 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-6">
-        <div class="order-details-confirmation">
+        <div class="order-details-confirmation" style="width: unset;">
 
           <div class="cart-page-heading">
             <h5>Your Order</h5>
           </div>
 
           <ul class="order-details-form mb-4">
-            <li><span>Total To Pay:</span> <span>${{ $cart->total }}</span></li>
+            <li><span>Total To Pay:</span> <span>RM {{ $totalPrice }}</span></li>
           </ul>
         </div>
       </div>
@@ -47,7 +47,7 @@
     }, function (createErr, instance) {
       button.addEventListener('click', function () {
         instance.requestPaymentMethod(function (err, payload) {
-          payload.cartId = {{ $cart->id }}
+          payload.orderIds = "{{ implode("|",$orderIds) }}";
 
           // Converted to post request to improve security
           $.ajax({
@@ -59,13 +59,19 @@
             success: function (data) {
               if (data.success) {
                 alert('Payment successfull!');
-                window.location.replace('/carts/' + data.cartId);
+                // window.location.replace('/carts/' + data.cartId);
+                window.location.replace('/orders/purchase-requests');
               } else {
                 alert('Payment failed');
                 window.location.replace('/payments/failed');
               }
             },
             error: function (data) {
+              @if (config('app.env') == "local")
+                console.log('Request Status: ' + data.status + ' Status Text: ' + data.statusText + ' ' + data.responseText);
+                debugger;
+                return false;
+              @endif
               alert('Payment failed');
               window.location.replace('/payments/failed')
             },

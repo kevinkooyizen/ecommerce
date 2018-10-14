@@ -26,33 +26,38 @@
                     <td>{{ $order->item->name }}</td>
                     <td>{{ $order->item->price }}</td>
                     <td>{{ $order->status->name }}</td>
-                      <td>
-                        @if ($salesOrPurchases == "purchase-requests" && $order->status_id != \App\Models\Status::getStatus('Accepted')->id)
-                          @if ($order->status_id != \App\Models\Status::getStatus('Cancelled')->id)
-                            {!! Form::open(['url' => "orders/$order->id", 'method' => 'PUT']) !!}
-                              <input type="hidden" name="status_id" value="{{ \App\Models\Status::getStatus('Cancelled')->id }}">
-                              <input type="hidden" name="salesOrPurchases" value="{{ $salesOrPurchases }}">
-                              <button class="btn btn-danger">Cancel</button>
-                            {{ Form::close() }}
-                            <br>
-                          @elseif ($order->status_id == \App\Models\Status::getStatus('Cancelled')->id)
-                            {!! Form::open(['url' => "orders/$order->id", 'method' => 'DELETE']) !!}
-                              <input type="hidden" name="salesOrPurchases" value="{{ $salesOrPurchases }}">
-                              <button class="btn btn-danger">Delete</button>
-                            {{ Form::close() }}
-                          @endif
-                        @elseif ($salesOrPurchases == "sale-requests" && $order->status_id != \App\Models\Status::getStatus('Accepted')->id)
+                    <td>
+                      @if ($salesOrPurchases == "purchase-requests" && $order->status_id != \App\Models\Status::getStatus('Accepted')->id)
+                        @if ($order->status_id != \App\Models\Status::getStatus('Cancelled')->id && $order->status_id != \App\Models\Status::getStatus('Paid')->id)
                           {!! Form::open(['url' => "orders/$order->id", 'method' => 'PUT']) !!}
-                            <input type="hidden" name="status_id" value="{{ \App\Models\Status::getStatus('Accepted')->id }}">
+                            <input type="hidden" name="status_id" value="{{ \App\Models\Status::getStatus('Cancelled')->id }}">
                             <input type="hidden" name="salesOrPurchases" value="{{ $salesOrPurchases }}">
-                            <button class="btn btn-success">Accept</button>
-                          {{ Form::close() }}
+                            <button class="btn btn-danger">Cancel</button>
+                          <br>
+                        @elseif ($order->status_id == \App\Models\Status::getStatus('Cancelled')->id)
+                          {!! Form::open(['url' => "orders/$order->id", 'method' => 'DELETE']) !!}
+                            <input type="hidden" name="salesOrPurchases" value="{{ $salesOrPurchases }}">
+                            <button class="btn btn-danger">Delete</button>
                         @endif
-                      </td>
+                      @elseif ($salesOrPurchases == "purchase-requests" && $order->status_id == \App\Models\Status::getStatus('Accepted')->id)
+                        {!! Form::open(['url' => "payments/create", 'method' => 'GET']) !!}
+                          <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" id="customCheck{{ $order->id }}" type="checkbox" name="selectedOrders[]" value="{{ $order->id }}">
+                            <label class="custom-control-label" for="customCheck{{ $order->id }}"></label>
+                          </div>
+                      @elseif ($salesOrPurchases == "sale-requests" && $order->status_id != \App\Models\Status::getStatus('Accepted')->id && $order->status_id != \App\Models\Status::getStatus('Paid')->id)
+                        {!! Form::open(['url' => "orders/$order->id", 'method' => 'PUT']) !!}
+                          <input type="hidden" name="status_id" value="{{ \App\Models\Status::getStatus('Accepted')->id }}">
+                          <input type="hidden" name="salesOrPurchases" value="{{ $salesOrPurchases }}">
+                          <button class="btn btn-success">Accept</button>
+                      @endif
+                    </td>
                   </tr>
                 @endforeach
               </tbody>
             </table>
+              <button class="btn btn-primary pull-right">Pay accepted orders</button>
+            {{ Form::close() }}
           @else
             No Orders
           @endif

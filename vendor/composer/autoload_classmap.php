@@ -39,6 +39,7 @@ return array(
     'App\\Models\\CartItem' => $baseDir . '/app/Models/CartItem.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Colour' => $baseDir . '/app/Models/Colour.php',
+    'App\\Models\\Country' => $baseDir . '/app/Models/Country.php',
     'App\\Models\\Item' => $baseDir . '/app/Models/Item.php',
     'App\\Models\\Newsletter' => $baseDir . '/app/Models/Newsletter.php',
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',

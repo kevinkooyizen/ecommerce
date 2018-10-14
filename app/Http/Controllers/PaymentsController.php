@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\Status;
 
 use Illuminate\Http\Request;
 
@@ -15,27 +17,32 @@ class PaymentsController extends Controller {
   }
 
   public function create(Request $request) {
-    $cart = Cart::find($request->cartId);
-    return view('payments.create', compact('cart'));
+    $totalPrice = 0;
+    foreach ($request->selectedOrders as $orderId) {
+      $order = Order::find($orderId);
+      $totalPrice += $order->item->price;
+    }
+    $orderIds = $request->selectedOrders;
+    return view('payments.create', compact('totalPrice', 'orderIds'));
   }
 
   public function process(Request $request) {
     $payload = $request->input('payload', false);
     $nonce = $payload['nonce'];
-    $cart = Cart::find($payload['cartId']);
+    $orderIds = explode("|", $payload['orderIds']);
+    $totalPrice = 0;
+    foreach ($orderIds as $orderId) {
+      $order = Order::find($orderId);
+      $order->status_id = Status::getStatus('Paid')->id;
+      $order->save();
+      $totalPrice += $order->item->price;
+    }
 
     $status = Braintree_Transaction::sale([
-      'amount' => $cart->total,
+      'amount' => $totalPrice,
       'paymentMethodNonce' => $nonce,
       'options' => ['submitForSettlement' => True]
     ]);
-
-    if ($status->success) {
-      $cart->paid = true;
-      $cart->save();
-    }
-
-    $status->cartId = $cart->id;
 
     return response()->json($status);
   }
