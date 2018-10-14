@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'E-Commerce'),
 
     /*
     |--------------------------------------------------------------------------
@@ -28,6 +28,7 @@ return [
 
     'env' => env('APP_ENV', 'production'),
     'version' => env('APP_VERSION', '1.0'),
+    'main_country' => env('APP_MAIN_COUNTRY', 'Malaysia'),
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +68,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Kuala_Lumpur',
 
     /*
     |--------------------------------------------------------------------------
