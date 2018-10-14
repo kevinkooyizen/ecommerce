@@ -33,16 +33,18 @@
                             <input type="hidden" name="status_id" value="{{ \App\Models\Status::getStatus('Cancelled')->id }}">
                             <input type="hidden" name="salesOrPurchases" value="{{ $salesOrPurchases }}">
                             <button class="btn btn-danger">Cancel</button>
+                          {{ Form::close() }}
                           <br>
                         @elseif ($order->status_id == \App\Models\Status::getStatus('Cancelled')->id)
                           {!! Form::open(['url' => "orders/$order->id", 'method' => 'DELETE']) !!}
                             <input type="hidden" name="salesOrPurchases" value="{{ $salesOrPurchases }}">
                             <button class="btn btn-danger">Delete</button>
+                          {{ Form::close() }}
                         @endif
                       @elseif ($salesOrPurchases == "purchase-requests" && $order->status_id == \App\Models\Status::getStatus('Accepted')->id)
-                        {!! Form::open(['url' => "payments/create", 'method' => 'GET']) !!}
+                        {{-- {!! Form::open(['url' => "payments/create", 'method' => 'GET']) !!} --}}
                           <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" id="customCheck{{ $order->id }}" type="checkbox" name="selectedOrders[]" value="{{ $order->id }}">
+                            <input class="custom-control-input payment-checkbox" id="customCheck{{ $order->id }}" type="checkbox" name="selectedOrders[]" value="{{ $order->id }}">
                             <label class="custom-control-label" for="customCheck{{ $order->id }}"></label>
                           </div>
                       @elseif ($salesOrPurchases == "sale-requests" && $order->status_id != \App\Models\Status::getStatus('Accepted')->id && $order->status_id != \App\Models\Status::getStatus('Paid')->id)
@@ -50,14 +52,16 @@
                           <input type="hidden" name="status_id" value="{{ \App\Models\Status::getStatus('Accepted')->id }}">
                           <input type="hidden" name="salesOrPurchases" value="{{ $salesOrPurchases }}">
                           <button class="btn btn-success">Accept</button>
+                        {{ Form::close() }}
                       @endif
                     </td>
                   </tr>
                 @endforeach
               </tbody>
             </table>
-              <button class="btn btn-primary pull-right">Pay accepted orders</button>
-            {{ Form::close() }}
+            @if ($salesOrPurchases == "purchase-requests")
+              <button type="button" class="btn btn-primary pull-right" onclick="checkSelected()">Pay accepted orders</button>
+            @endif
           @else
             No Orders
           @endif
@@ -68,5 +72,20 @@
   </div>
 </div>
 <!-- ##### Checkout Area End ##### -->
+<script type="text/javascript">
+  function checkSelected() {
 
+    checkedOrders = document.querySelectorAll('.payment-checkbox:checked')
+
+    selectedOrders = [];
+    for (i = 0; i < checkedOrders.length; i++) {
+      selectedOrders.push(checkedOrders[i].value);
+    }
+
+    selectedOrders = selectedOrders.toString();
+
+    location.replace('/payments/create?selectedOrders=' + selectedOrders);
+
+  }
+</script>
 @endsection

@@ -24,6 +24,7 @@ class OrdersController extends Controller {
       $orders = Order::join('items', 'item_id', 'items.id')
         ->where('items.user_id', Auth::user()->id)
         ->where('orders.status_id', '!=', Status::getStatus('Cancelled')->id)
+        ->select('orders.id as id', 'orders.*')
         ->get();
     }
     return view('orders.show', compact('orders', 'salesOrPurchases'));

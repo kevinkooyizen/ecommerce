@@ -17,12 +17,12 @@ class PaymentsController extends Controller {
   }
 
   public function create(Request $request) {
+    $orderIds = explode(",", $request->selectedOrders);
     $totalPrice = 0;
-    foreach ($request->selectedOrders as $orderId) {
+    foreach ($orderIds as $orderId) {
       $order = Order::find($orderId);
       $totalPrice += $order->item->price;
     }
-    $orderIds = $request->selectedOrders;
     return view('payments.create', compact('totalPrice', 'orderIds'));
   }
 
