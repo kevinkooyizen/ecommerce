@@ -34,11 +34,13 @@ class OrdersController extends Controller {
       return redirect()->back()->withError('No items selected. Please select at least one item to request.');
     }
     foreach ($request->selectedItem as $cartItemId) {
-      $order = new Order;
-      $order->user_id = $request->user_id;
-      $order->item_id = $cartItemId->item->id;
-      $order->status_id = Status::getStatus('Pending')->id;
-      $order->save();
+      if (CartItem::find($cartItemId)) {
+        $order = new Order;
+        $order->user_id = $request->user_id;
+        $order->item_id = CartItem::find($cartItemId)->item->id;
+        $order->status_id = Status::getStatus('Pending')->id;
+        $order->save();
+      }
 
       CartItem::destroy($cartItemId);
     }
