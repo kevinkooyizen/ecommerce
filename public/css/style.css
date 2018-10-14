@@ -33,3 +33,8 @@
 .margin-left-10 {
   margin-left: 10px !important;
 }
+
+/*Font color and family*/
+.essence-btn {
+  color: #FF0093 !important;
+}
