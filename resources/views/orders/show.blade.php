@@ -27,8 +27,16 @@
                     <td>{{ $order->item->price }}</td>
                     <td>{{ $order->status->name }}</td>
                     <td>
-                      @if ($salesOrPurchases == "purchase-requests" && $order->status_id != \App\Models\Status::getStatus('Accepted')->id)
-                        @if ($order->status_id != \App\Models\Status::getStatus('Cancelled')->id && $order->status_id != \App\Models\Status::getStatus('Paid')->id)
+                      @if ($order->status_id == \App\Models\Status::getStatus('Paid')->id && $order->received)
+                        Received
+                      @elseif ($salesOrPurchases == "purchase-requests" && $order->status_id != \App\Models\Status::getStatus('Accepted')->id)
+                        @if ($salesOrPurchases == "purchase-requests" && $order->status_id == \App\Models\Status::getStatus('Paid')->id)
+                          {!! Form::open(['url' => "orders/$order->id", 'method' => 'PUT']) !!}
+                            <input type="hidden" name="received" value="1">
+                            <input type="hidden" name="salesOrPurchases" value="{{ $salesOrPurchases }}">
+                            <button class="btn btn-success">Received Item</button>
+                          {{ Form::close() }}
+                        @elseif ($order->status_id != \App\Models\Status::getStatus('Cancelled')->id && $order->status_id != \App\Models\Status::getStatus('Paid')->id)
                           {!! Form::open(['url' => "orders/$order->id", 'method' => 'PUT']) !!}
                             <input type="hidden" name="status_id" value="{{ \App\Models\Status::getStatus('Cancelled')->id }}">
                             <input type="hidden" name="salesOrPurchases" value="{{ $salesOrPurchases }}">
@@ -42,11 +50,10 @@
                           {{ Form::close() }}
                         @endif
                       @elseif ($salesOrPurchases == "purchase-requests" && $order->status_id == \App\Models\Status::getStatus('Accepted')->id)
-                        {{-- {!! Form::open(['url' => "payments/create", 'method' => 'GET']) !!} --}}
-                          <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input payment-checkbox" id="customCheck{{ $order->id }}" type="checkbox" name="selectedOrders[]" value="{{ $order->id }}">
-                            <label class="custom-control-label" for="customCheck{{ $order->id }}"></label>
-                          </div>
+                        <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input payment-checkbox" id="customCheck{{ $order->id }}" type="checkbox" name="selectedOrders[]" value="{{ $order->id }}">
+                          <label class="custom-control-label" for="customCheck{{ $order->id }}"></label>
+                        </div>
                       @elseif ($salesOrPurchases == "sale-requests" && $order->status_id != \App\Models\Status::getStatus('Accepted')->id && $order->status_id != \App\Models\Status::getStatus('Paid')->id)
                         {!! Form::open(['url' => "orders/$order->id", 'method' => 'PUT']) !!}
                           <input type="hidden" name="status_id" value="{{ \App\Models\Status::getStatus('Accepted')->id }}">

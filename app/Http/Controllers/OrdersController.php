@@ -51,8 +51,7 @@ class OrdersController extends Controller {
 
   public function update(Request $request, $orderId) {
     $order = Order::find($orderId);
-    $order->status_id = $request->status_id;
-    $order->save();
+    $order->update($request->all());
 
     return redirect("orders/$request->salesOrPurchases");
   }
