@@ -148,29 +148,49 @@
 
 <!-- ##### Brands Area Start ##### -->
 <div class="brands-area d-flex align-items-center justify-content-between">
-  <!-- Brand Logo -->
-  <div class="single-brands-logo">
-    <img src="img/core-img/b.liv.jpeg" alt="" style="max-width: 250px;">
-  </div>
-  <!-- Brand Logo -->
-  <div class="single-brands-logo">
-    <img src="img/core-img/Hada Labo.jpeg" alt="" style="max-width: 250px;">
-  </div>
-  <!-- Brand Logo -->
-  <div class="single-brands-logo">
-    <img src="img/core-img/Loreal.jpeg" alt="" style="max-width: 250px;">
-  </div>
-  <!-- Brand Logo -->
-  <div class="single-brands-logo">
-    <img src="img/core-img/Maybelline.jpeg" alt="" style="max-width: 250px;">
-  </div>
-  <!-- Brand Logo -->
-  <div class="single-brands-logo">
-    <img src="img/core-img/NYX.jpeg" alt="" style="max-width: 250px;">
-  </div>
-  <!-- Brand Logo -->
-  <div class="single-brands-logo">
-    <img src="img/core-img/Pantene.jpeg" alt="" style="max-width: 250px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="popular-products-slides owl-carousel">
+          <div class="single-product-wrapper">
+            <!-- Brand Logo -->
+            <div class="single-brands-logo">
+              <img src="img/core-img/b.liv.jpeg" alt="" style="{{ $agent->isMobile()?'width:300% !important;max-width: 500px':'max-width:250px' }}">
+            </div>
+          </div>
+          <div class="single-product-wrapper">
+            <!-- Brand Logo -->
+            <div class="single-brands-logo">
+              <img src="img/core-img/Hada Labo.jpeg" alt="" style="{{ $agent->isMobile()?'width:300% !important;max-width: 500px':'max-width:250px' }}">
+            </div>
+          </div>
+          <div class="single-product-wrapper">
+            <!-- Brand Logo -->
+            <div class="single-brands-logo">
+              <img src="img/core-img/Loreal.jpeg" alt="" style="{{ $agent->isMobile()?'width:300% !important;max-width: 500px':'max-width:250px' }}">
+            </div>
+          </div>
+          <div class="single-product-wrapper">
+            <!-- Brand Logo -->
+            <div class="single-brands-logo">
+              <img src="img/core-img/Maybelline.jpeg" alt="" style="{{ $agent->isMobile()?'width:300% !important;max-width: 500px':'max-width:250px' }}">
+            </div>
+          </div>
+          <div class="single-product-wrapper">
+            <!-- Brand Logo -->
+            <div class="single-brands-logo">
+              <img src="img/core-img/NYX.jpeg" alt="" style="{{ $agent->isMobile()?'width:300% !important;max-width: 500px':'max-width:250px' }}">
+            </div>
+          </div>
+          <div class="single-product-wrapper">
+            <!-- Brand Logo -->
+            <div class="single-brands-logo">
+              <img src="img/core-img/Pantene.jpeg" alt="" style="{{ $agent->isMobile()?'width:300% !important;max-width: 500px':'max-width:250px' }}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <!-- ##### Brands Area End ##### -->
