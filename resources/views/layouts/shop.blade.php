@@ -188,7 +188,11 @@
                             <!-- Hover Content -->
                             <div class="hover-content">
                               <!-- Add to Cart -->
-                              @if ($request->path() != "order-requests")
+                              @if ($request->path() == "items/owner-shop")
+                                <div class="add-to-cart-btn">
+                                  <a href="/items/{{ $item->id }}/edit" class="btn essence-btn">Edit Item</a>
+                                </div>
+                              @elseif ($request->path() != "order-requests")
                                 <div class="add-to-cart-btn">
                                   <a href="#" class="btn essence-btn" onclick="addToCart({{ $item->id }})">Add to Cart</a>
                                 </div>

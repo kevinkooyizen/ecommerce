@@ -104,7 +104,7 @@
               <label for="url">URL</label>
               <input class="form-control" id="url" name="url" value="{{ $item->order_request->url }}">
             </div>
-          @elseif (!$request->order_request)
+          @elseif (!$item->order_request)
             <div class="col-12 mb-3">
               <label for="secondary_image">Secondary Image</label>
               <input id="secondary_image" tabindex="-1" type="file" name="secondary_image">
