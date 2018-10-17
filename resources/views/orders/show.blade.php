@@ -26,7 +26,7 @@
                     <td>
                       <ul>
                         <li>Item Name: {{ $order->item->name }}</li>
-                        @if ($salesOrPurchases == "sales-requests")
+                        @if ($salesOrPurchases == "sale-requests")
                           <li>Buyer Name: {{ $order->user->name }}</li>
                           <li>Buyer Email: {{ $order->user->email }}</li>
                         @elseif ($salesOrPurchases == "purchase-requests")
