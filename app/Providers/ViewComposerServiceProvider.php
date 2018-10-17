@@ -13,6 +13,8 @@ use App\Models\Item;
 use Auth;
 use View;
 
+use Jenssegers\Agent\Agent;
+
 class ViewComposerServiceProvider extends ServiceProvider {
   /**
    * Bootstrap the application services.
@@ -23,6 +25,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
     $this->filters();
     $this->global();
     $this->home();
+    $this->mobileCheck();
   }
 
   /**
@@ -87,5 +90,11 @@ class ViewComposerServiceProvider extends ServiceProvider {
     });
 
 	}
+
+  public function mobileCheck(){
+    view()->composer('*', function() {
+      View::share('agent', (new Agent()));
+    });
+  }
 	
 }
