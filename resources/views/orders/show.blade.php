@@ -13,7 +13,7 @@
               <thead>
                 <tr>
                   <th width="20%"></th>
-                  <th width="40%">Name</th>
+                  <th width="40%">Details</th>
                   <th width="20%">Price</th>
                   <th width="10%">Status</th>
                   <th width="10%"></th>
@@ -23,7 +23,18 @@
                 @foreach ($orders as $order)
                   <tr style="max-height: 200px;">
                     <td><img src="{{ $order->item->primary_image }}"></td>
-                    <td>{{ $order->item->name }}</td>
+                    <td>
+                      <ul>
+                        <li>Item Name: {{ $order->item->name }}</li>
+                        @if ($salesOrPurchases == "sales-requests")
+                          <li>Buyer Name: {{ $order->user->name }}</li>
+                          <li>Buyer Email: {{ $order->user->email }}</li>
+                        @elseif ($salesOrPurchases == "purchase-requests")
+                          <li>Seller Name: {{ $order->item->user->name }}</li>
+                          <li>Seller Email: {{ $order->item->user->email }}</li>
+                        @endif
+                      </ul>
+                    </td>
                     <td>{{ $order->item->price }}</td>
                     <td>{{ $order->status->name }}</td>
                     <td>
