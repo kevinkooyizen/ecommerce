@@ -13,6 +13,7 @@
   <div class="single_product_desc clearfix">
     <span>{{ $item->brand->name }}</span>
     <h2>{{ $item->name }}</h2>
+    <span class="text-danger">{{ $item->hide?"Hidden":"" }}</span>
     <p class="product-price">
       @if ($item->order_request)
         Item Price + tips for traveller:
@@ -39,7 +40,15 @@
       <div class="cart-fav-box d-flex align-items-center">
         <!-- Cart -->
         @if (!$item->order_request)
-          <button type="button" class="btn essence-btn" onclick="addToCart('{{ $item->id }}')">Add to cart</button>
+          @if (Auth::user())
+            @if ($item->user == Auth::user())
+              <button type="button" class="btn essence-btn" onclick="location.replace('/items/{{ $item->id }}/edit')">Edit Item</button>
+            @elseif ($item->user != Auth::user())
+              <button type="button" class="btn essence-btn" onclick="addToCart('{{ $item->id }}')">Add to cart</button>
+            @endif
+          @elseif (!Auth::user())
+            <button type="button" class="btn essence-btn" onclick="addToCart('{{ $item->id }}')">Add to cart</button>
+          @endif
         @elseif ($item->order_request)
           <button type="button" class="btn essence-btn" onclick="location.replace('/items/{{ $item->id }}/edit')">Edit Order Request</button>
         @endif

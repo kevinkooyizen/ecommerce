@@ -85,7 +85,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
   public function home(){
 
     view()->composer('home', function () {
-      $firstSixItems = Item::where('order_request_id', 0)->orderBy('created_at', 'DESC')->limit(6)->get();
+      $firstSixItems = Item::where('hide', false)->where('order_request_id', 0)->orderBy('created_at', 'DESC')->limit(6)->get();
       View::share('firstSixItems', $firstSixItems);
     });
 

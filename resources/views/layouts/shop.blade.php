@@ -158,8 +158,11 @@
                                 <span>New</span>
                               </div>
                             @endif --}}
-
-                            @if ($item->new)
+                            @if ($item->hide)
+                              <div class="product-badge offer-badge">
+                                <span>Hidden</span>
+                              </div>
+                            @elseif ($item->new)
                               <div class="product-badge new-badge">
                                 <span>New</span>
                               </div>

@@ -8,6 +8,10 @@ use Auth;
 
 class Item extends Model {
 
+  protected $casts = [
+    'hide' => 'boolean',
+  ];
+
   protected $fillable = [
     'name',
     'description',
@@ -73,6 +77,11 @@ class Item extends Model {
   public static function updateItem($request, $itemId) {
     $item = Item::find($itemId);
     $item = storeImage($item, $request);
+    if ($request->hide == "on") {
+      $item->hide = true; 
+    } elseif (!$request->hide) {
+      $item->hide = false; 
+    }
     $item->update($request->all());
 
     if ($item->order_request) {
@@ -100,6 +109,7 @@ class Item extends Model {
   public static function shopItems($request) {
     $items = Item::query();
     $items->where('order_request_id', 0);
+    $items->where('hide', false);
 
     $items = self::searchItem($request, $items);
 

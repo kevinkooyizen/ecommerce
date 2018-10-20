@@ -112,7 +112,13 @@
           @endif
           <div class="col-12 mb-3">
             <label for="price">Price <span>*</span></label>
-            <input class="form-control" id="price" tabindex="-1" type="text" name="price" onkeypress="return isNumberKey(event)" value="{{ $item->price }}">
+            <input class="form-control" id="price" type="text" name="price" onkeypress="return isNumberKey(event)" value="{{ $item->price }}">
+          </div>
+          <div class="col-12 mb-3">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" name="hide" class="custom-control-input" id="hide" {{ $item->hide?'checked':'' }}>
+              <label class="custom-control-label" for="hide">Hide</label>
+            </div>
           </div>
           <div class="col-12 mb-3">
             <button class="btn essence-btn">Update Item</button>
