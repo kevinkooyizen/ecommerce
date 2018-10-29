@@ -11,8 +11,10 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class NewslettersController extends Controller {
 
-  public function __construct(){
-    $this->middleware('auth');
+  public function index(Request $request) {
+    $newsletters = Newsletter::all();
+
+    return view('newsletters.index', compact('newsletters'));
   }
 
   public function store(Request $request) {

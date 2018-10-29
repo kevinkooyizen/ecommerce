@@ -127,7 +127,8 @@
             @if (Auth::user()->admin)
               <a class="dropdown-item line-height-20 text-left w-100" href="/categories">Categories</a>
               <a class="dropdown-item line-height-20 text-left w-100" href="/brands">Brands</a>
-              <a class="dropdown-item line-height-20 text-left w-100" href="/newsletters/export">Export Subscribers</a>
+              <a class="dropdown-item line-height-20 text-left w-100" href="/newsletters">Newsletters</a>
+              {{-- <a class="dropdown-item line-height-20 text-left w-100" href="/newsletters/export">Export Subscribers</a> --}}
             @endif
             {!! Form::open(['url' => '/logout', 'method' => 'POST', 'id' => 'logoutForm']) !!}
               <input type="hidden" name="currentRoute" value="{{ Route::getFacadeRoot()->current()->uri() }}">
