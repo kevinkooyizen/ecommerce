@@ -13,3 +13,4 @@ yarn-error.log
 sftp-config.json
 /vendor
 app.yaml
+composer.lock
